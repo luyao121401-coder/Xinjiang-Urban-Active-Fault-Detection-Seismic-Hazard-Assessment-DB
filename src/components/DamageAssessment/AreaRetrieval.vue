@@ -12,7 +12,9 @@
             <span>检索方式</span>
         </div>
         <div>
-            <el-radio >缓冲区</el-radio>
+            <el-radio>缓冲区</el-radio>
+            <div>
+            </div>
         </div>
     </div>
 </template>
