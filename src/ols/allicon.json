@@ -1,0 +1,1114 @@
+[
+    {
+        "name": "poi.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "open-diamond.png"
+    },
+    {
+        "name": "sailing.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "golf.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "airports.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "wheel_chair_accessible.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "toilets.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "convenience.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "cross-hairs_highlight.png"
+    },
+    {
+        "name": "wheel_chair_accessible.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "electronics.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "ylw-pushpin.png",
+        "xunits": "pixels",
+        "yunits": "pixels",
+        "x": "20",
+        "y": "2"
+    },
+    {
+        "name": "sailing.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "cross-hairs.png"
+    },
+    {
+        "name": "camera.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "hiker.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "cycling.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "bus.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "triangle.png"
+    },
+    {
+        "name": "mechanic.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "falling_rocks.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "truck.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "woman.png"
+    },
+    {
+        "name": "A-lv.png",
+        "xunits": "pixels",
+        "yunits": "pixels",
+        "x": "32",
+        "y": "1"
+    },
+    {
+        "name": "campfire.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "flag.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "target.png"
+    },
+    {
+        "name": "parks.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "movies.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "marina.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "partly_cloudy.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "police.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "tram.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "woman.png"
+    },
+    {
+        "name": "placemark_square.png"
+    },
+    {
+        "name": "track.png",
+        "xunits": "pixels",
+        "yunits": "pixels",
+        "x": "32",
+        "y": "1"
+    },
+    {
+        "name": "hospitals.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "arrow-reverse.png",
+        "xunits": "pixels",
+        "yunits": "pixels",
+        "x": "54",
+        "y": "42"
+    },
+    {
+        "name": "earthquake.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "info.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "rail.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "info-i.png"
+    },
+    {
+        "name": "water.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "sunny.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "yen.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "camera.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "subway.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "placemark_circle_highlight.png"
+    },
+    {
+        "name": "swimming.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "subway.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "info-i.png"
+    },
+    {
+        "name": "webcam.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "volcano.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "dollar.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "marina.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "polygon.png"
+    },
+    {
+        "name": "post_office.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "caution.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "forbidden.png"
+    },
+    {
+        "name": "gas_stations.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "polygon.png"
+    },
+    {
+        "name": "mechanic.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "shaded_dot.png"
+    },
+    {
+        "name": "arrow.png",
+        "xunits": "pixels",
+        "yunits": "pixels",
+        "x": "32",
+        "y": "1"
+    },
+    {
+        "name": "ski.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "euro.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "star.png"
+    },
+    {
+        "name": "bars.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "arrow-reverse.png",
+        "xunits": "pixels",
+        "yunits": "pixels",
+        "x": "54",
+        "y": "42"
+    },
+    {
+        "name": "hospitals.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "triangle.png"
+    },
+    {
+        "name": "electronics.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "parking_lot.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "airports.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "hiker.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "trail.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "ranger_station.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "star.png"
+    },
+    {
+        "name": "shopping.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "ferry.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "campground.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "donut.png"
+    },
+    {
+        "name": "bars.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "motorcycling.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "grocery.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "phone.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "salon.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "golf.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "realestate.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "trail.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "volcano.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "truck.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "arts.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "horsebackriding.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "lodging.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "parking_lot.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "cabs.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "campground.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "realestate.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "phone.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "snack_bar.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "salon.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "cycling.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "ranger_station.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "sunny.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "fishing.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "campfire.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "man.png"
+    },
+    {
+        "name": "A-lv.png",
+        "xunits": "pixels",
+        "yunits": "pixels",
+        "x": "32",
+        "y": "1"
+    },
+    {
+        "name": "tram.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "ferry.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "snack_bar.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "convenience.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "caution.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "placemark_square_highlight.png"
+    },
+    {
+        "name": "poi.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "firedept.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "donut.png"
+    },
+    {
+        "name": "police.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "falling_rocks.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "cabs.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "arrow.png",
+        "xunits": "pixels",
+        "yunits": "pixels",
+        "x": "32",
+        "y": "1"
+    },
+    {
+        "name": "flag.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "rail.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "info_circle.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "info.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "swimming.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "toilets.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "gas_stations.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "info_circle.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "yen.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "post_office.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "coffee.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "dollar.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "snowflake_simple.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "grocery.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "square.png"
+    },
+    {
+        "name": "shopping.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "earthquake.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "dining.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "firedept.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "webcam.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "placemark_circle.png"
+    },
+    {
+        "name": "ylw-pushpin.png",
+        "xunits": "pixels",
+        "yunits": "pixels",
+        "x": "20",
+        "y": "2"
+    },
+    {
+        "name": "partly_cloudy.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "movies.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "shaded_dot.png"
+    },
+    {
+        "name": "track.png",
+        "xunits": "pixels",
+        "yunits": "pixels",
+        "x": "32",
+        "y": "32"
+    },
+    {
+        "name": "rainy.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "heliport.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "lodging.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "ski.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "homegardenbusiness.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "motorcycling.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "rainy.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "picnic.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "open-diamond.png"
+    },
+    {
+        "name": "dining.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "fishing.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "snowflake_simple.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "heliport.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "coffee.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "target.png"
+    },
+    {
+        "name": "arts.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "play.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "bus.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "water.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "picnic.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "man.png"
+    },
+    {
+        "name": "parks.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "play.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "euro.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "horsebackriding.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "homegardenbusiness.png",
+        "xunits": "fraction",
+        "yunits": "fraction",
+        "x": "0.5",
+        "y": "0"
+    },
+    {
+        "name": "square.png"
+    },
+    {
+        "name": "forbidden.png"
+    }
+]
