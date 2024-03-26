@@ -42,7 +42,7 @@
                         <span class="pic">图片</span>
                         <span class="text">地震信息与应急产出</span>
                     </div>
-                    <div class="card">
+                    <div class="card"  @click="jumpTo(6)">
                         <!-- <img src=""></img> -->
                         <span class="pic">图片</span>
                         <span class="text">震后12小时应急服务响应清单</span>
@@ -99,7 +99,11 @@ export default{
                     this.changepage0(0)
                     break;
                 case 5:
-                    this.$router.push('/outPut')
+                    this.$router.push('/outPut');
+                    break;
+                case 6:
+                    this.$router.push({path:'/emergencyService'});
+                    break;
             }
         }
     }

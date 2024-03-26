@@ -10,6 +10,10 @@ import AssessResults from '../components/DamageAssessment/AssessResults.vue'
 import BatchCompute from '../components/DamageAssessment/BatchCompute.vue'
 import RiskSurvey from '../components/RiskSurvey/RiskSurvey.vue'
 import OutPut from '../components/output/OutPut.vue'
+import topNav from '../components/emergencyService/topNav.vue'
+import emergencyService from '../components/emergencyService/emergencyService.vue'
+import history from '../components/emergencyService/history.vue'
+import quakeDetail from '../components/emergencyService/quakeDetail.vue'
 // import TriggerHistory from '../components/output/TriggerHistory.vue'
 
 Vue.use(VueRouter)
@@ -96,6 +100,24 @@ const routes = [
       name: 'outPut',
       component: OutPut
     },
+    {
+      path: '/emergencyService',
+      component: topNav,
+      redirect: '/emergencyService/form',
+      children: [{
+        path: 'form',
+        name: '响应清单',
+        component: emergencyService,
+      },{
+        path: 'mergencyhistory',
+        name: 'mergencyhistory',
+        component: history,
+      },{
+        path: 'quakeDetail',
+        name: 'quakeDetail',
+        component: quakeDetail,
+      }]
+    }
     // // 地震信息与应急产出
     // {
     //   path: '/triggerHistory',
