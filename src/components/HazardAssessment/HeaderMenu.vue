@@ -100,7 +100,7 @@ export default{
 }
 .right .menu{
     margin: 40px;
-    cursor: pointer
+    cursor: pointer;
 
 }
 .right .menu span{ 
