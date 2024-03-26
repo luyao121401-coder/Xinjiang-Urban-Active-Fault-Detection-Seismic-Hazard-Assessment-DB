@@ -1,6 +1,6 @@
 <template>
     <div style="background: red;height: 98vh;background: #F9F9F9;">
-        <div class="view-list">
+        <!-- <div class="view-list" v-show="listShow">
             <div style="margin: 12px 16px">
                 <div class="header">
                     <span>批量查看列表（6）</span>
@@ -41,6 +41,31 @@
                     <span>清空列表</span>
                 </div>
             </div>
+        </div> -->
+        <div class="view-list" v-show="listShow">
+            <div style="margin: 12px 16px">
+                <div class="header">
+                    <span>批量查看列表（6）</span>
+                    <el-button>查看</el-button>
+                </div>
+            </div>
+            <div v-for="(category, categoryName) in dataList" :key="categoryName">
+                <h2>{{ categoryName }}</h2>
+                <div class="items">
+                    <div class="item" v-for="(item, index) in category" :key="index">
+                        <img src="@/assets/icon/清空列表@2x.png"></img>
+                        <span>{{ item }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="items">
+                <span>探槽</span>
+                <div class="item" v-for="(item, index) in items" :key="index">
+                    <img src="@/assets/icon/清空列表@2x.png"></img>
+                    <span class="number">{{ index }}</span>
+                    <span>探槽编号：{{ item.tcbh }}</span>
+                </div>
+            </div> -->
         </div>
         <SmallPicker v-if="picker1 == 1"></SmallPicker>
         <div>
@@ -48,6 +73,17 @@
         </div>
         <div class="container">
             <div class="left">
+                <span>选择专题</span>
+                <div>
+                    <el-tree
+                        :props="props"
+                        :data="data"
+                        @node-click="handleNodeClick"
+                        ref="tree"
+                        :node-key="nodeKey"
+                        >
+                    </el-tree>
+                </div>
                 <!-- <el-collapse>
                 </el-collapse> -->
             </div>
@@ -56,7 +92,10 @@
                     <div class="top-group">
                         <div class='top-group-right'>
                             <div class="search-group">
-                                <img></img>
+                                <img 
+                                src="@/assets/icon/查询@2x.png"
+                                style="width: 18px;height: 18px;margin-left: 16px"
+                                ></img>
                                 <el-input placeholder="输入项目名称、项目编号、城市、索引面编号查询"></el-input>
                                 <el-divider direction="vertical"></el-divider>
                                 <el-button type="text">搜索</el-button>
@@ -80,29 +119,72 @@
                                     <el-dropdown-item>类型4</el-dropdown-item>
                                 </el-dropdown-menu>
                             </el-dropdown> -->
-                            <el-button class="advanced-search" @click="openDialog">高级检索</el-button>
+                            <el-button class="advanced-search" @click="openDialog">
+                                <div style="display: flex;align-items: center;width:24px">
+                                    <img src="@/assets/icon/高级检索@2x.png"
+                                        style="height: 18px;width: 18px;margin-right:2px">
+                                    </img>
+                                    <span>高级检索</span>
+                                </div>
+                            </el-button>    
                         </div>
                         <div class="top-group-left">
-                            <el-button>批量查看列表</el-button>
+                            <el-button @click="showList">
+                                <div style="display: flex;align-items: center;margin: 0 auto">
+                                    <img src="@/assets/icon/批量位置查看@2x.png"
+                                        style="height: 18px;width: 18px;margin-right:8px"
+                                    ></img>
+                                    <span>批量查看列表</span>
+                                </div>
+                            </el-button>
                         </div>
                     </div>
                 </div>
                 <div class="right-body">
                     <div class="table-list">
-                        <el-table>
-                            <el-table-column align="center" label="序号" type="index"></el-table-column>
-                            <el-table-column align="center" label="索引面编号"></el-table-column>
-                            <el-table-column align="center" label="传感器"></el-table-column>
-                            <el-table-column align="center" label="时相"></el-table-column>
-                            <el-table-column align="center" label="影像名称"></el-table-column>
-                            <el-table-column align="center" label="数据格式"></el-table-column>
-                            <el-table-column align="center" label="波段信息"></el-table-column>
-                            <el-table-column align="center" label="处理过程"></el-table-column>
-                            <el-table-column align="center" label="项目名称"></el-table-column>
-                            <el-table-column align="center" label="项目编号"></el-table-column>
-                            <el-table-column align="center" label="提交单位"></el-table-column>
-                            <el-table-column align="center" label="项目类型"></el-table-column>
-                            <el-table-column align="center" label="操作"></el-table-column>
+                        <el-table :data="tableData" style="width:100%" :header-cell-style="{ backgroundColor: '#D9E2ED', color: '#000000', height: '40px' }">
+                            <el-table-column width="50" label="序号" type="index"></el-table-column>
+                            <el-table-column width="120"  label="索引面编号" prop="bh"></el-table-column>
+                            <el-table-column width="80"  label="传感器" prop="cgq"></el-table-column>
+                            <el-table-column width="80"  label="时相" prop="sx"></el-table-column>
+                            <el-table-column width="80"  label="影像名称" prop="yxmc"></el-table-column>
+                            <el-table-column width="80"  label="数据格式" prop="sjgs"></el-table-column>
+                            <el-table-column width="120"  label="波段信息" prop="bdxx"></el-table-column>
+                            <el-table-column width="120"  label="处理过程" prop="clgc"></el-table-column>
+                            <el-table-column width="150"  label="项目名称" prop="xmmc"></el-table-column>
+                            <el-table-column width="100"  label="项目编号" prop="xmbh"></el-table-column>
+                            <el-table-column width="160"  label="提交单位" prop="tjdw"></el-table-column>
+                            <el-table-column width="160"  label="项目类型" prop="xmlx"></el-table-column>
+                            <el-table-column label="操作">
+                                <template slot-scope="scope">
+                                    <div style="display: flex">
+                                        <div class="cell-inside">
+                                            <img 
+                                            src="@/assets/icon/添加查看@2x.png"
+                                            style="height:20px;width:20px;margin-right:4px"
+                                            ></img>
+                                            <el-button 
+                                            @click="handleAddview(scope.row)" 
+                                            type="text"
+                                            >
+                                            添加查看
+                                            </el-button>
+                                        </div>
+                                        <div class="cell-inside" style="margin-left: 16px">
+                                            <img 
+                                            src="@/assets/icon/查看位置@2x.png"
+                                            style="width:20px;height:20px;margin-right:4px"
+                                            ></img>
+                                            <el-button 
+                                            @click="handleAddview(scope.row)" 
+                                            type="text"
+                                            >
+                                            查看位置
+                                            </el-button>
+                                        </div>
+                                    </div>
+                                </template>
+                            </el-table-column>
                         </el-table>
                     </div>
                 </div>
@@ -121,6 +203,10 @@ export default{
     components: { HeaderMenu,SmallPicker },
     data(){
         return{
+            nodeKey: 'id', // 设置节点标识键为 'id'
+            categoryName: '',
+            dataList: [],    //批量查看列表的数据
+            listShow: false,    //批量查看列表
             options: [{
                 value: '选项1',
                 label: '全部项目类型'
@@ -137,13 +223,103 @@ export default{
                 value: '选项5',
                 label: '类型四'
             }],
-            value: '选项1'
+            value: '选项1',
+            // 侧边栏数据
+            data: [{
+                    label: '遥感',
+                },{
+                    label: '地震地质调查',
+                    children: [{
+                        label: "地震地质调查 1-1",
+                        children: [{
+                            label: "地震地质调查 1-1-1"
+                        }]
+                    }]
+                },{
+                    label: '微地貌',
+                },{
+                    label: '探槽',
+                },{
+                    label: '钻探',
+                    children: [{
+                        label: "钻探 1-1",
+                        children: [{
+                            label: "钻探 1-1-1"
+                        }]
+                    }]
+                },{
+                    label: '样品',
+                },{
+                    label: '地球物理勘探',
+                    children: [{
+                        label: "地球物理勘探 1-1",
+                        children: [{
+                            label: "地球物理勘探 1-1-1"
+                        }]
+                    }]
+                },{
+                    label: '地球化学勘探',
+                    children: [{
+                        label: "地球化学勘探 1-1",
+                        children: [{
+                            label: "地球化学勘探 1-1-1"
+                        }]
+                    }]
+                },{
+                    label: '火山',
+                },{
+                    label: '原始数据',
+            }],
+            props: {
+                children: 'children',
+                label: 'label'
+            },
+            // table数据
+            tableData: [{
+                bh:'#010Ab0h01',
+                cgq: '示例',
+                sx: '示例',
+                yxmc: '示例',
+                sjgs: '示例',
+                bdxx: '波段信息示例',
+                clgc: '处理过程示例',
+                xmmc: '城市项目名称01',
+                xmbh: '-',
+                tjdw: '示例提交单位名称',
+                xmlx: '城市活动断层探测',
+                cz: '操作'
+            },{
+                bh:'#010Ab0h02',
+                cgq: '示例',
+                sx: '示例',
+                yxmc: '示例',
+                sjgs: '示例',
+                bdxx: '波段信息示例',
+                clgc: '处理过程示例',
+                xmmc: '城市项目名称01',
+                xmbh: '-',
+                tjdw: '示例提交单位名称',
+                xmlx: '城市活动断层探测',
+                cz: '操作'
+            },
+            
+        ]
         }
     },
     computed: {
         ...mapGetters({
             picker1: "picker/picker1"
         })
+    },
+    mounted() {
+        const tree = this.$refs.tree;
+        this.$nextTick(() => {
+        const firstNode = tree.root.childNodes[0];
+        if (firstNode) {
+            tree.setCurrentKey(firstNode.data.id); // 使用节点标识键调用 setCurrentKey 方法
+            tree.$emit('node-click', firstNode);
+        }
+        });
     },
     methods:{
         ...mapActions({
@@ -152,6 +328,31 @@ export default{
         openDialog(){
             this.changepicker1(1)
             console.log(this.picker1)
+        },
+        showList(){
+            this.listShow = !this.listShow
+            console.log(this.dataList)
+        },
+        handleAddview(row){
+            let foundMatch = false;
+            let categoryName = this.categoryName
+            if(!this.dataList[categoryName]) {
+                this.$set(this.dataList, categoryName, []);
+            }
+            this.dataList[categoryName].forEach( item =>{
+                if(item == row.bh){
+                    foundMatch = true;
+                }
+            })
+            if (!foundMatch) {
+                this.dataList[categoryName].push(row.bh);
+            }
+
+            console.log("data", this.dataList)
+        },
+        handleNodeClick(data){
+            this.categoryName = data.label
+            console.log(data)
         }
     }
 }
@@ -166,10 +367,52 @@ export default{
     margin: 18px 18px 0
 }
 .left{
-    height: 100%;
+    /* height: 100%; */
     width: 233px;
-    background: #FFF
+    padding: 16px;
+    height: 500px;
+    background: #FFFFFF;
+    border-radius: 6px;
+
 }
+.left span{
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: #777777;
+    line-height: 20px;
+    text-align: left;
+    font-style: normal;
+}
+.left /deep/.el-tree{
+    margin-top: 8px
+}
+.left /deep/.el-tree-node__content {
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 400;
+    font-size: 16px!important;
+    color: #303030;
+    line-height: 22px;
+    text-align: left;
+    font-style: normal;
+    height: 40px;
+    margin: 8px 0
+}
+.left /deep/.el-tree-node__label{
+    font-size: 16px
+}
+/* .left /deep/.el-tree-node__content:active{
+    width: 210px;
+    height: 36px;
+    background: #ECF6FF;
+    border-radius: 6px;
+} */
+/* .left /deep/.is-current{
+    width: 210px;
+    height: 36px;
+    background: #ECF6FF;
+    border-radius: 6px;
+} */
 .right{
     width: calc(100% - 249px);
     margin-left: 16px;
@@ -259,14 +502,72 @@ export default{
 .table-list{
     height: 100%;
 }
+.right .el-table /deep/tr{
+    height: 40px;
+}
 .right-body{
     margin-top: 16px;
     height: calc(100% - 56px);
+}
+.right .right-body .table-list .cell-inside{
+    display: flex;
+    align-items:center;
+}
+.right .right-body .table-list .cell-inside .el-button{
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+    line-height: 20px;
+    text-align: left;
+    font-style: normal;
 }
 .el-table{
     height: 100%;
     background: #F9F9F9;
 }
+.table-list {
+    width: 100%;
+    height: 100%;
+}
+.table-list /deep/ .el-table td.el-table__cell,
+.table-list /deep/.el-table th.el-table__cell.is-leaf {
+    border: none;
+}
+.table-list /deep/ .el-table th.el-table__cell > .cell {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.table-list /deep/ td,
+.table-list /deep/ th {
+    height: 40px;
+    padding: 0;
+    border: none;
+    text-align: center;
+}
+.table-list /deep/ .cell {
+    padding: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    overflow: visible;
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+    line-height: 20px;
+    text-align: left;
+    font-style: normal;
+}
+.table-list /deep/ .el-table {
+    height: 100%;
+    border: none;
+}
+
 .view-list{
     position: absolute;
     right: 27px;
