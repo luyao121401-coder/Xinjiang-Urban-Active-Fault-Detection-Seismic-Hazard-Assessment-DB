@@ -229,3 +229,9 @@ export default{
   margin: 10px 0 0 27px
 }
 </style>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+</style>
