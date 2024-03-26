@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div> -->
-        <div class="view-list" v-show="listShow">
+        <div class="view-list" v-if="listShow">
             <div style="margin: 12px 16px">
                 <div class="header">
                     <span>批量查看列表（6）</span>
