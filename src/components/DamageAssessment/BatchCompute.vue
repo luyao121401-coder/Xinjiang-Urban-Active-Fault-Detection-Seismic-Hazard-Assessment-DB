@@ -383,7 +383,8 @@ export default{
 }
 /* 地图 */
 .mapview {
-  height: 873px;
+  /* height: 873px; */
+  height: calc( 100vh - 68px);
   width: 1260px;
   top: 16px;
   border-radius: 6px
