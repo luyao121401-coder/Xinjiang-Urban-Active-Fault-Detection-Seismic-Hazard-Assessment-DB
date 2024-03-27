@@ -88,10 +88,10 @@ export default{
 .m-page{
   z-index: 1;
   position: absolute;
-  width: calc(100% - 40px);
+  width: 100%;
   min-width: 800px;
-  height: calc(100% - 108px);
-  padding: 20px;
+  height: calc(100% - 68px);
+  /* padding: 20px; */
   top: 68px;
 }
 .downlodeBox {
@@ -168,7 +168,7 @@ h1{
 }
 .inventoryList{
   width: 100%;
-  max-height: 570px;
+  max-height: 520px;
   overflow: auto;
   padding-top: 16px;
 }

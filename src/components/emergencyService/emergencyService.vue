@@ -92,10 +92,10 @@ export default{
 .m-page{
   z-index: 1;
   position: absolute;
-  width: calc(100% - 40px);
+  width: 100%;
   min-width: 800px;
-  height: calc(100% - 108px);
-  padding: 20px;
+  min-height: calc(100% - 68px);
+  /* padding: 20px; */
   top: 68px;
 }
 .downlodeBox{
@@ -124,7 +124,7 @@ export default{
   font-size: 32px;
   color: #081E49;
   text-align: center;
-  margin: 60px 0 30px 0;
+  margin: 30px 0 20px 0;
 }
 .formBox label{
   font-size: 18px;
@@ -132,11 +132,11 @@ export default{
   line-height: 50px;
 }
 .el-row{
-  margin-top: 20px;
+  margin-top: 16px;
 }
 .disabledbtn{
   width: 280px;
-  height: 48px;
+  height: 38px;
   display: block;
   margin: 40px auto;
   /* margin-left: 500px; */
