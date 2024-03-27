@@ -111,7 +111,7 @@ export default{
 </script>
 <style scoped>
 .container{
-    height: 98vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: red
@@ -141,7 +141,7 @@ export default{
 .body{
     /* display: flex;
     align-items: center */
-    height: calc(100% - 149px)
+    height: 100%;
 }
 .title{
     display: flex;
@@ -169,12 +169,12 @@ export default{
 .content{
     display: flex;
     flex-direction: column;
-    margin-top: 40px
+    margin-top: 30px
 }
 .content .line{
     display: flex;
     margin: auto;
-    margin-top: 54px
+    margin-top: 44px
 }
 .content .line .card{
   /* background-color: rgba(255, 255, 255, 1);
