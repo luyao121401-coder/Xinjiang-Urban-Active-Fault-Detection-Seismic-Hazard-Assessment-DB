@@ -1,42 +1,91 @@
 <template>
-    <div style="background:#F9F9F9;width: 100%;">
+    <div style="background:#FFFFFF;width: 100%;">
         <div>
             <HeaderMenu></HeaderMenu>
         </div>
-        <div :class="picker5 == 1 ? '' :'main'">
+        <div :class="picker5 == 1 || picker7 == 1 ? '' :'main'">
             <div class="left" id="assess-results" v-if="page1 == 1">
                 <div class="headerr">
                     <span class="title">地震灾害损失预评估</span>
-                    <span>文字文字文字文字文字文字文字
-                        文字文字文字文字文字文字文字
-                        文字文字文字文字文字文字文字
-                        文字文字文字文字文字文字文字
-                        文字文字文字文字文字文字文字
+                    <span>   XXXX年XX月XX日，对XXXXXX、XXXXXX地区进行了地震灾害损失预评估工作，依据《地震灾害风险评估技术规范》（FXPC/DZ P-02）规定，本次地震灾害损失预评估以区域地震灾害损失评估为主，采用普适型数据，以公里网格（或较小的行政单元）承灾体作为评估单元。
                     </span>
                 </div>
                 <div class="item">
-                    <span class="title">评估方法</span>
-                    <span>文字文字文字文字文字文字文字</span>
+                    <div class="title-s">
+                        <img src="@/assets/icon/矩形@2x.png"></img>
+                        <span class="title">评估方法</span>
+                    </div>
+                    <span>    采用了地震灾害人员死亡风险评估模型、地震灾害经济损失风险评估模型、建筑物易损性评估模型。</span>
                 </div>
                 <div class="item">
-                    <span class="title">评估结果</span>
-                    <span>文字文字文字文字文字文字文字</span>
+                    <div class="title-s">
+                        <img src="@/assets/icon/矩形@2x.png"></img>
+                        <span class="title">评估结果</span>
+                    </div>
+                    <span>     结果描述结果描述结果描述结果描述结果描述结果描述结果描述结果描述结果描述结果描述结果描述。</span>
                 </div>
                 <div class="item">
-                    <span class="title">建议措施</span>
-                    <span>文字文字文字文字文字文字文字</span>
+                    <div class="title-s">
+                        <img src="@/assets/icon/建议措施@2x.png"></img>
+                        <span class="title">建议措施</span>
+                    </div>
+                    <span>     结果描述结果描述结果描述结果描述结果描述结果描述结果描述结果描述结果描述结果描述结果描述。</span>
                 </div>
                 <div class="item">
-                    <span class="title">专题图件</span>
-                    <span>图片图片图片图片图片图片图片图片图片图片图片图片图片图片</span>
+                    <div class="title-s">
+                        <img src="@/assets/icon/专题图件@2x.png"></img>
+                        <span class="title">专题图件</span>
+                    </div>
+                    <div class="pics">
+                        <div class="picss">
+                            <div class="pic">
+                                <img src="@/assets/img/地形图.jpg"></img>
+                            </div>
+                            <div>
+                                <span>致死性水平…</span>
+                            </div>
+                        </div>
+                        <div class="picss">
+                            <div class="pic">
+                                <img src="@/assets/img/地形图.jpg"></img>
+                            </div>
+                            <div>
+                                <span>危险区预判人…</span>
+                            </div>
+                        </div>
+                        <div class="picss">
+                            <div class="pic">
+                                <img src="@/assets/img/地形图.jpg"></img>
+                            </div>
+                            <div>
+                                <span>乡镇风险等级…</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="item">
-                    <span class="title">评估报告</span>
-                    <span>地震风险调查评估报告.pdf</span>
+                    <div class="title-s">
+                        <img src="@/assets/icon/评估报告@2x.png"></img>
+                        <span class="title">评估报告</span>
+                    </div>
+                    <span
+                    style="
+                    font-family: PingFangSC, PingFang SC;
+                    font-weight: 500;
+                    font-size: 16px;
+                    color: #1F60A7;
+                    line-height: 22px;
+                    text-align: left;
+                    font-style: normal;
+                    cursor: pointer
+                    "
+                    >地震风险调查评估报告.pdf</span>
                 </div>
             </div>
+            <!-- <el-divider v-if="page2 == 1" direction="vertical"></el-divider> -->
             <BatchCompute v-if="page2 == 1"></BatchCompute>
-            <div v-show="picker5 != 1">
+            <AreaRetrieval v-if="page3 == 1"></AreaRetrieval>
+            <div v-show="picker5 != 1 && picker7 !==1">
                 <mapview class="mapview" ref="mapview">
                     <SwitchMap id="swtichMap"></SwitchMap>
                     <footinfo class='footinfo'></footinfo>
@@ -72,6 +121,7 @@ import SwitchMap from "../omap/SwitchMap.vue";
 // import BatchCompute from "./BatchCompute.vue"
 import { mapActions, mapGetters } from "vuex"
 import BatchCompute from "./BatchCompute.vue"
+import AreaRetrieval from "./AreaRetrieval.vue"
 
 
 
@@ -86,7 +136,8 @@ export default{
         // DrawMenuView,
         // MeasureMenuView,
         SwitchMap,
-        BatchCompute
+        BatchCompute,
+        AreaRetrieval
     },
     data(){
         return{
@@ -102,7 +153,8 @@ export default{
             page2: "page/page2",
             page3: "page/page3",
             page1: "page/page1",
-            picker5: "picker/picker5"
+            picker5: "picker/picker5",
+            picker7: "picker/picker7"
         })
     },
     mounted() {
@@ -229,7 +281,8 @@ export default{
     flex-direction: column
 }
 .left .headerr span{
-    margin: 24px 0;
+    /* margin: 24px 0; */
+    text-indent: 2em; /* 设置首行缩进为2个字符 */
 }
 .left .item span, .headerr span{
     margin: 12px 0;
@@ -249,6 +302,7 @@ export default{
     line-height: 28px;
     text-align: left;
     font-style: normal;
+    text-indent: 0em;
 }
 .left .item .title{
     font-family: PingFangSC, PingFang SCQ;
@@ -258,10 +312,59 @@ export default{
     line-height: 28px;
     text-align: left;
     font-style: normal;
+    text-indent: 0em; /* 设置首行缩进为2个字符 */
+}
+.left .item span{
+    text-indent: 2em; /* 设置首行缩进为2个字符 */
+}
+.left .item .pics{
+    display: flex;
+    margin-right: 16px
+}
+.left .item .picss{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 16px
+}
+.left .item .pics span{
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    line-height: 17px;
+    text-align: center;
+    font-style: normal;
+}
+.left .item .pics .pic{
+    width: 84px;
+    height: 84px;
+    background: #EEEEEE;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px
+    
+}
+.left .item .title-s{
+    display: flex;
+    align-items: center
+}
+.left .item .title-s img{
+    height: 24px;
+    width: 24px;
+    margin-right: 8px
+}
+.el-divider {
+    width: 2px;
+    height: 868px;
+    background: #EEEEEE;
+    color: red
 }
 .mapview {
   /* height: 873px; */
-  height: calc( 100vh - 68px);
+  height: calc( 100vh - 100px);
   width: 1260px;
   /* top: 16px; */
   border-radius: 6px

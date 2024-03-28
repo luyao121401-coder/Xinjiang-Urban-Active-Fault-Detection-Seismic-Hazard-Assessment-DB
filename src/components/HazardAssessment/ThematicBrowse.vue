@@ -96,9 +96,9 @@
                                 src="@/assets/icon/查询@2x.png"
                                 style="width: 18px;height: 18px;margin-left: 16px"
                                 ></img>
-                                <el-input placeholder="输入项目名称、项目编号、城市、索引面编号查询"></el-input>
+                                <el-input v-model="searchKeyword" placeholder="输入项目名称、项目编号、城市、索引面编号查询"></el-input>
                                 <el-divider direction="vertical"></el-divider>
-                                <el-button type="text">搜索</el-button>
+                                <el-button type="text" @click="handleSearch(searchKeyword)">搜索</el-button>
                             </div>
                             <el-select v-model="value" placeholder="请选择">
                                 <el-option
@@ -142,7 +142,7 @@
                 </div>
                 <div class="right-body">
                     <div class="table-list">
-                        <el-table :data="tableData" style="width:100%" :header-cell-style="{ backgroundColor: '#D9E2ED', color: '#000000', height: '40px' }">
+                        <el-table border :data="searchData" style="width:100%" :header-cell-style="{ backgroundColor: '#D9E2ED', color: '#000000', height: '40px' }">
                             <el-table-column width="50" label="序号" type="index"></el-table-column>
                             <el-table-column width="120"  label="索引面编号" prop="bh"></el-table-column>
                             <el-table-column width="80"  label="传感器" prop="cgq"></el-table-column>
@@ -189,6 +189,10 @@
                     </div>
                 </div>
                 <div class="right-bottom">
+                    <div class="total-tip">
+                        共计 {{ total }} 条{{ categoryName }}数据
+                    </div>
+                    <pagination :currentPage="current" :total="total"></pagination>
                 </div>
             </div>
         </div>
@@ -198,11 +202,16 @@
 import HeaderMenu from "./HeaderMenu.vue"
 import { mapActions, mapGetters } from "vuex"
 import SmallPicker from "./SmallPicker.vue"
+import pagination from "./pagination.vue"
 
 export default{
-    components: { HeaderMenu,SmallPicker },
+    components: { HeaderMenu, SmallPicker, pagination},
     data(){
         return{
+            current: 1,
+            pageSize: 16,
+            total: null,
+            searchKeyword: '',    //用户输入的搜索关键词
             nodeKey: 'id', // 设置节点标识键为 'id'
             categoryName: '',
             dataList: [],    //批量查看列表的数据
@@ -275,6 +284,7 @@ export default{
                 label: 'label'
             },
             // table数据
+            searchData: [],    //存储搜索结果
             tableData: [{
                 bh:'#010Ab0h01',
                 cgq: '示例',
@@ -302,7 +312,47 @@ export default{
                 xmlx: '城市活动断层探测',
                 cz: '操作'
             },
-            
+            {
+                bh:'#010Ab0h03',
+                cgq: '示例',
+                sx: '示例',
+                yxmc: '示例',
+                sjgs: '示例',
+                bdxx: '波段信息示例',
+                clgc: '处理过程示例',
+                xmmc: '城市项目名称01',
+                xmbh: '-',
+                tjdw: '示例提交单位名称',
+                xmlx: '城市活动断层探测',
+                cz: '操作'
+            },
+            {
+                bh:'#010Ab0h04',
+                cgq: '示例',
+                sx: '示例',
+                yxmc: '示例',
+                sjgs: '示例',
+                bdxx: '波段信息示例',
+                clgc: '处理过程示例',
+                xmmc: '城市项目名称01',
+                xmbh: '-',
+                tjdw: '示例提交单位名称',
+                xmlx: '城市活动断层探测',
+                cz: '操作'
+            },
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+            {bh:'#010Ab0h04',cgq: '示例',sx: '示例', yxmc: '示例',sjgs: '示例',bdxx: '波段信息示例',clgc: '处理过程示例',xmmc: '城市项目名称01',xmbh: '-',tjdw: '示例提交单位名称',xmlx: '城市活动断层探测',cz: '操作'},
+
         ]
         }
     },
@@ -312,6 +362,8 @@ export default{
         })
     },
     mounted() {
+        this.searchData = this.tableData
+        this.total = this.searchData.length;
         const tree = this.$refs.tree;
         this.$nextTick(() => {
         const firstNode = tree.root.childNodes[0];
@@ -329,10 +381,12 @@ export default{
             this.changepicker1(1)
             console.log(this.picker1)
         },
+        // 显示查看列表
         showList(){
             this.listShow = !this.listShow
             console.log(this.dataList)
         },
+        // 添加查看
         handleAddview(row){
             let foundMatch = false;
             let categoryName = this.categoryName
@@ -353,7 +407,28 @@ export default{
         handleNodeClick(data){
             this.categoryName = data.label
             console.log(data)
-        }
+        },
+        //搜索逻辑
+        handleSearch(keyword){
+            console.log("搜索")
+            this.current = 1
+            this.searchData = []
+            this.searchData = this.tableData.filter(item => {
+            for (const key in item) {
+                if (item[key].toString().includes(keyword)) {
+                    return true; // 返回true表示包含关键词，保留该数据
+                }
+            }
+                return false; // 返回false表示不包含关键词，过滤掉该数据
+            });   
+            this.total = this.searchData.length
+            console.log(this.searchData)
+        },
+        // 分页
+        paginationRequestPage(page) {
+            this.current = page
+            // this.getUserData()
+        },
     }
 }
 </script>
@@ -501,13 +576,22 @@ export default{
 }
 .table-list{
     height: 100%;
+    /* border: 1px solid #FFF; */
+}
+/deep/.el-table .el-table__cell:first-child .cell {
+    padding-left: 0px;
+}
+/deep/.el-table .cell {
+    border: 1px solid #EDEDED;
 }
 .right .el-table /deep/tr{
     height: 40px;
+    background: none;
+    border: 1px solid #EDEDED;
 }
 .right-body{
     margin-top: 16px;
-    height: calc(100% - 56px);
+    height: calc(100% - 137px);
 }
 .right .right-body .table-list .cell-inside{
     display: flex;
@@ -532,7 +616,8 @@ export default{
 }
 .table-list /deep/ .el-table td.el-table__cell,
 .table-list /deep/.el-table th.el-table__cell.is-leaf {
-    border: none;
+    /* border: none; */
+    border: 1px solid #EDEDED;
 }
 .table-list /deep/ .el-table th.el-table__cell > .cell {
     padding: 0;
@@ -563,11 +648,22 @@ export default{
     text-align: left;
     font-style: normal;
 }
-.table-list /deep/ .el-table {
-    height: 100%;
-    border: none;
-}
+.table-list{
+    width: 100%;
 
+}
+.table-list /deep/ .el-table {
+    height: calc(100%);
+    border: none;
+    background: #F9F9F9;
+    overflow-x: auto;
+}
+.table-list /deep/ .el-table .el-table__body-wrapper{
+    height: calc(100% - 40px);
+    background: #F9F9F9;
+    overflow-y: auto;
+    /* overflow-y: none */
+}
 .view-list{
     position: absolute;
     right: 27px;
@@ -641,6 +737,16 @@ export default{
 }
 .view-list .items-bottom span{
     margin-left: 5px
+}
+.total-tip{
+    position: absolute;
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 500;
+    font-size: 14px;
+    color: #777777;
+    line-height: 20px;
+    text-align: left;
+    font-style: normal;
 }
 </style>
 
