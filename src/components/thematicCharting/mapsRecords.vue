@@ -2,7 +2,7 @@
   <div class="m-page">
     <div>
       <el-breadcrumb separator-class="el-icon-arrow-left">
-        <el-breadcrumb-item :to="{ path: '/thematicCharting' }">{{$route.params.name}}</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ name: $route.params.name }">{{$route.params.name}}</el-breadcrumb-item>
         <el-breadcrumb-item>制图记录</el-breadcrumb-item>
       </el-breadcrumb>
     </div>

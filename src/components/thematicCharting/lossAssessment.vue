@@ -17,15 +17,23 @@
         自定义范围
         <div v-if="radio == 1" style="width: 100%;">
           <div style="width: 100%;">
-            <el-input style="width: 220px; margin: 10px auto; display: block;" v-model="form.name" placeholder="输入顶部纬度，0.00"></el-input>
+            <el-input style="width: 220px; margin: 10px auto; display: block;" v-model="form.name" placeholder="输入顶部纬度，0.00">
+              <img style="margin-top: 50%;" slot="prefix" src="@/assets/img/纬度.png" alt="">
+            </el-input>
           </div>
           <div class="therebox">
-            <el-input style="width: 220px;" v-model="form.name" placeholder="输入左侧经度，0.00"></el-input>
+            <el-input style="width: 220px;" v-model="form.name" placeholder="输入左侧经度，0.00">
+              <img style="margin-top: 50%;" slot="prefix" src="@/assets/img/经度.png" alt="">
+            </el-input>
             <el-button style="width: 80px; margin: 0 10px;" :disabled="whetherDisabled" :type="btnType">调整</el-button>
-            <el-input style="width: 220px;" v-model="form.name" placeholder="输入右侧经度，0.00"></el-input>
+            <el-input style="width: 220px;" v-model="form.name" placeholder="输入右侧经度，0.00">
+              <img style="margin-top: 50%;" slot="prefix" src="@/assets/img/经度.png" alt="">
+            </el-input>
           </div>
           <div>
-            <el-input style="width: 220px; margin: 10px auto; display: block;" v-model="form.name" placeholder="输入底部纬度，0.00"></el-input>
+            <el-input style="width: 220px; margin: 10px auto; display: block;" v-model="form.name" placeholder="输入底部纬度，0.00">
+              <img style="margin-top: 50%;" slot="prefix" src="@/assets/img/纬度.png" alt="">
+            </el-input>
           </div>
         </div>
         
