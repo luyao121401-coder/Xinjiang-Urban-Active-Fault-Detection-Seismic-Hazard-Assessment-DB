@@ -67,7 +67,7 @@ export default {
 
     clickItem(item, name) {
       this.omEvent.switchBaseLayer(item, name);
-      this.isPopOpen = false;
+      // this.isPopOpen = false;
     },
 
     lwSwitchChange() {

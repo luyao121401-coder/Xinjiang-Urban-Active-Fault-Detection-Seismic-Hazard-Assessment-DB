@@ -98,6 +98,9 @@ export default{
                     this.$router.push('/riskSurvey');
                     this.changepage0(0)
                     break;
+                case 4:
+                    this.$router.push({path:'/thematicCharting'});
+                    break;
                 case 5:
                     this.$router.push('/outPut');
                     break;

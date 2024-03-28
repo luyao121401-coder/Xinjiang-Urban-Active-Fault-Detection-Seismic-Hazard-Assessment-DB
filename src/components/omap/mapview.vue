@@ -8,6 +8,7 @@
     <div id="fullscreen" v-if="isShowFullscreen"></div>
     <div id="overview" v-if="isShowOverview"></div>
     <div
+      v-if="isShowCapture"
       v-show="page0 == 1"
       id="map-capture"
       class="map-capture"
@@ -68,7 +69,7 @@ export default {
     //是否显示截屏
     isShowCapture: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     //是否显放大缩小按钮
     isShowZoomView: {
