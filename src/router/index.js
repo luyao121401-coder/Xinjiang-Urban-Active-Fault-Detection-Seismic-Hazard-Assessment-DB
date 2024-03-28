@@ -10,6 +10,15 @@ import AssessResults from '../components/DamageAssessment/AssessResults.vue'
 import BatchCompute from '../components/DamageAssessment/BatchCompute.vue'
 import RiskSurvey from '../components/RiskSurvey/RiskSurvey.vue'
 import OutPut from '../components/output/OutPut.vue'
+import topNav from '../components/emergencyService/topNav.vue'
+import emergencyService from '../components/emergencyService/emergencyService.vue'
+import history from '../components/emergencyService/history.vue'
+import quakeDetail from '../components/emergencyService/quakeDetail.vue'
+import thematicTop from '../components/thematicCharting/thematicTop.vue'
+import activeFaultSurvey from '../components/thematicCharting/activeFaultSurvey.vue'
+import mapsRecords from '../components/thematicCharting/mapsRecords.vue'
+import lossAssessment from '../components/thematicCharting/lossAssessment.vue'
+import riskScreening from '../components/thematicCharting/riskScreening.vue'
 // import TriggerHistory from '../components/output/TriggerHistory.vue'
 
 Vue.use(VueRouter)
@@ -96,6 +105,46 @@ const routes = [
       name: 'outPut',
       component: OutPut
     },
+    {
+      path: '/emergencyService',
+      component: topNav,
+      redirect: '/emergencyService/form',
+      children: [{
+        path: 'form',
+        name: '响应清单',
+        component: emergencyService,
+      },{
+        path: 'mergencyhistory',
+        name: 'mergencyhistory',
+        component: history,
+      },{
+        path: 'quakeDetail',
+        name: 'quakeDetail',
+        component: quakeDetail,
+      }]
+    },
+    {
+      path: '/thematicCharting',
+      component: thematicTop,
+      redirect: '/thematicCharting/activeFaultSurvey',
+      children: [{
+        path: 'activeFaultSurvey',
+        name: '城市活动断层探测成果图',
+        component: activeFaultSurvey,
+      },{
+        path: 'mapsRecords',
+        name: 'mapsRecords',
+        component: mapsRecords,
+      },{
+        path: 'lossAssessment',
+        name: '地震灾害损失预评估成果图',
+        component: lossAssessment,
+      },{
+        path: 'riskScreening',
+        name: '地震灾害风险普查成果图',
+        component: riskScreening,
+      }]
+    },
     // // 地震信息与应急产出
     // {
     //   path: '/triggerHistory',
@@ -105,7 +154,7 @@ const routes = [
   ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })

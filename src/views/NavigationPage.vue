@@ -42,7 +42,7 @@
                         <span class="pic">图片</span>
                         <span class="text">地震信息与应急产出</span>
                     </div>
-                    <div class="card">
+                    <div class="card"  @click="jumpTo(6)">
                         <!-- <img src=""></img> -->
                         <span class="pic">图片</span>
                         <span class="text">震后12小时应急服务响应清单</span>
@@ -98,8 +98,15 @@ export default{
                     this.$router.push('/riskSurvey');
                     this.changepage0(0)
                     break;
+                case 4:
+                    this.$router.push({path:'/thematicCharting'});
+                    break;
                 case 5:
-                    this.$router.push('/outPut')
+                    this.$router.push('/outPut');
+                    break;
+                case 6:
+                    this.$router.push({path:'/emergencyService'});
+                    break;
             }
         }
     }
@@ -107,7 +114,7 @@ export default{
 </script>
 <style scoped>
 .container{
-    height: 98vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: red
@@ -137,7 +144,7 @@ export default{
 .body{
     /* display: flex;
     align-items: center */
-    height: calc(100% - 149px)
+    height: 100%;
 }
 .title{
     display: flex;
@@ -165,12 +172,12 @@ export default{
 .content{
     display: flex;
     flex-direction: column;
-    margin-top: 40px
+    margin-top: 30px
 }
 .content .line{
     display: flex;
     margin: auto;
-    margin-top: 54px
+    margin-top: 44px
 }
 .content .line .card{
   /* background-color: rgba(255, 255, 255, 1);
@@ -233,5 +240,6 @@ export default{
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 </style>
