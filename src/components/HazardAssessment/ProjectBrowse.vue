@@ -207,7 +207,7 @@ export default{
     z-index: 999;
 }
 .mapview {
-  height: calc(100vh - 68px);
+  height: calc(100vh - 100px);
   /* width:100vw; */
   /* background: red; */
 }

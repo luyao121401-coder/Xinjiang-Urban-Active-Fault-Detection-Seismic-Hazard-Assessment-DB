@@ -225,6 +225,7 @@ export default{
 .side-bar .el-checkbox__inner::after {
     height: 5px;
     left: 3px;
+    top: 0
 }
 .custom-checkbox img {
   width: 16px; /* 设置图片宽度 */

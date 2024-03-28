@@ -4,8 +4,8 @@ import NavigationPage from '../views/NavigationPage.vue'
 import ProjectBrowse from '../components/HazardAssessment/ProjectBrowse.vue'
 import ThematicBrowse from '../components/HazardAssessment/ThematicBrowse.vue'
 import DataServe from '../components/HazardAssessment/DataServe.vue'
-import HazardSysNavigation from '../components/HazardAssessment/SysNavigation.vue'
-import DamageSysNavigation from '../components/DamageAssessment/SysNavigation.vue'
+// import HazardSysNavigation from '../components/HazardAssessment/SysNavigation.vue'
+// import DamageSysNavigation from '../components/DamageAssessment/SysNavigation.vue'
 import AssessResults from '../components/DamageAssessment/AssessResults.vue'
 import BatchCompute from '../components/DamageAssessment/BatchCompute.vue'
 import RiskSurvey from '../components/RiskSurvey/RiskSurvey.vue'
@@ -53,11 +53,11 @@ const routes = [
       name: 'DataServe',
       component: DataServe,
     },
-    {
-      path: '/sysNavigation',
-      name: 'SysNavigation',
-      component: HazardSysNavigation,
-    },
+    // {
+    //   path: '/sysNavigation',
+    //   name: 'SysNavigation',
+    //   component: HazardSysNavigation,
+    // },
     // 地震灾害损失评估
     // {
     //   path: '/assessResults',
@@ -88,11 +88,11 @@ const routes = [
       name: 'batchCompute',
       component: BatchCompute
     },
-    {
-      path: '/damageNavigation',
-      name: 'damageNavigation',
-      component: DamageSysNavigation
-    },
+    // {
+    //   path: '/damageNavigation',
+    //   name: 'damageNavigation',
+    //   component: DamageSysNavigation
+    // },
     // 地震灾害风险普查
     {
       path: '/riskSurvey',

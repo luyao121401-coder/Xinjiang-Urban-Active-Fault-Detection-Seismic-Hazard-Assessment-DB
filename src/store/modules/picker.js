@@ -5,7 +5,9 @@ const state = {
     picker4: null,
     picker5: null,
     // 地震信息与应急产出
-    picker6: null
+    picker6: null,
+    //区域计算历史记录
+    picker7: null
 }
 const getters  = {
     picker1(state){
@@ -26,6 +28,9 @@ const getters  = {
     // 地震信息与应急产出
     picker6(state){
         return state.picker6
+    },
+    picker7(state){
+        return state.picker7
     },
 }
 const mutations = {
@@ -48,6 +53,10 @@ const mutations = {
     changepicker6(state, picker6){
         state.picker6 = picker6
     },
+    changepicker7(state, picker7){
+        state.picker7 = picker7
+    },
+    
 }
 const actions = {
     changepicker1({
@@ -80,6 +89,11 @@ const actions = {
         commit
     }, num){
         commit('changepicker6', num)
+    },
+    changepicker7({
+        commit
+    }, num){
+        commit('changepicker7', num)
     },
 
 }

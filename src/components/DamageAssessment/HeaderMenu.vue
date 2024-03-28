@@ -14,7 +14,7 @@
                 <span >批量计算</span>
             </div>
             <el-divider direction="vertical"></el-divider>
-            <div class="menu" @click="jumpTo(2)">
+            <div class="menu" @click="jumpTo(4)">
                 <span >区域检索与计算</span>
             </div>
             <el-divider direction="verical"></el-divider>
@@ -68,7 +68,12 @@ export default{
                     break;
                 case 3:
                     this.$router.push('/');
-                    break;                
+                    break;     
+                case 4:
+                    this.changepage2(0)
+                    this.changepage1(0)
+                    this.changepage3(1)
+                break;           
             }
         }
     }

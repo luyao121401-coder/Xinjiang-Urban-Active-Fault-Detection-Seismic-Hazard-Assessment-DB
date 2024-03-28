@@ -17,33 +17,58 @@
                         <span>计算记录</span>
                     </div>
                 </div>
-                <div class="table-container">
-                    <el-table :data="tableData" stripe height="100%" style="width: 100%">
-                        <el-table-column align="center" width="180px" label="序号"  prop="index"></el-table-column>
-                        <el-table-column align="center" width="180px" label="震中经度" prop="longitude"></el-table-column>
-                        <el-table-column align="center" width="180px" label="震中纬度" prop="latitude"></el-table-column>
-                        <el-table-column align="center" width="180px" label="发震时刻" prop="earthquaketime"></el-table-column>
-                        <el-table-column align="center" width="180px" label="震级" prop="magnitude"></el-table-column>
-                        <el-table-column align="center" width="180px" label="深度(km)" prop="depth"></el-table-column>
-                        <!-- <el-table-column align="center" label="操作"></el-table-column> -->
+                <div class="title-s">
+                    <img src="@/assets/icon/地震目录@2x.png"></img>
+                    <span>地震目录</span>
+                </div>
+                <div class="table-container" style="margin-bottom: 20px">
+                    <el-table :data="tableData" stripe height="100%" style="width:100%" :header-cell-style="{ backgroundColor: '#D9E2ED', color: '#000000', height: '40px' }">
+                        <el-table-column align="center" width="50px" label="序号" type="index"></el-table-column>
+                        <el-table-column align="center" width="80px" label="震中经度" prop="longitude"></el-table-column>
+                        <el-table-column align="center" width="80px" label="震中纬度" prop="latitude"></el-table-column>
+                        <el-table-column align="center" width="150px" label="发震时刻" prop="earthquaketime"></el-table-column>
+                        <el-table-column align="center" width="60px" label="震级" prop="magnitude"></el-table-column>
+                        <el-table-column align="center" width="100px" label="深度(km)" prop="depth"></el-table-column>
+                        <el-table-column align="center" label="操作">
+                            <template slot-scope="scope">
+                                        <div style="display: flex;justify-content:center">
+                                            <div class="cell-inside">
+                                                <img 
+                                                src="@/assets/icon/清空地震目录@2x.png"
+                                                @click="handleClear(scope.row)"
+                                                style="height:20px;width:20px;margin-right:4px"
+                                                ></img>
+                                                </el-button>
+                                            </div>
+                                        </div>
+                                    </template>
+                        </el-table-column>
                     </el-table>
                     <div class="buttons">
                         <div class="left">
                             <div class="add" @click="openDialog2">
-                                <!-- <img></img> -->
-                                <i class="el-icon-circle-plus"></i>
+                                <img style="height:18px;width:18px" src="@/assets/icon/添加地震@2x.png"></img>
                                 <span>添加地震</span>
                             </div>
                             <div class="batch-add" @click="openDialog4">
-                                <!-- <img></img> -->
+                                <img style="height:18px;width:18px" src="@/assets/icon/批量添加地震@2x.png"></img>
                                 <span>批量添加地震</span>
                             </div>   
                         </div>  
-                        <div class="right">
-                            <!-- <img></img> -->
-                            <i class="el-icon-remove" style="color: #F76561;"></i>
+                        <div class="right" @click="handleClear(1)">
+                            <img style="height:18px;width:18px" :src="tableData.length === 0 ? require('@/assets/icon/清空地震目录-禁用@2x.png') : require('@/assets/icon/清空地震目录@2x.png')"></img>
                             <span>清空地震目录</span>
                         </div>       
+                    </div>
+                </div>
+                <div style="display:flex;flex-direction: column">
+                    <div class="title-s">
+                        <img src="@/assets/icon/计算模型@2x.png"></img>
+                        <span>计算模型</span>
+                    </div>
+                    <div class="select-model">
+                        <span>地震烈度衰减关系模型</span>
+                        <el-select placeholder="选择地震烈度衰减关系模型"></el-select>
                     </div>
                 </div>
                 <div class="compute">
@@ -97,6 +122,7 @@ export default{
     },
     data(){
         return{
+            
             drawStyle: false,
             isUseDraw: false,
             isUseMeasure: false,
@@ -111,19 +137,17 @@ export default{
                 earthquaketime: "2024/1/23 0:00:00",
                 magnitude: 4.5,
                 depth: 10
-            },
-            {
-                index:2,
-                longitude: 80.31,
-                latitude: 40.12,
+            },{
+                index:1,
+                longitude: 78.43,
+                latitude: 41.07,
                 earthquaketime: "2024/1/23 0:00:00",
                 magnitude: 4.5,
                 depth: 10
-            },
-            {
-                index:3,
-                longitude: 80.01,
-                latitude: 40.20,
+            },{
+                index:1,
+                longitude: 78.43,
+                latitude: 41.07,
                 earthquaketime: "2024/1/23 0:00:00",
                 magnitude: 4.5,
                 depth: 10
@@ -179,6 +203,47 @@ export default{
             changepicker4: "picker/changepicker4",
             changepicker5: "picker/changepicker5"
         }),
+        // 清空地震目录
+        handleClear(row) {
+            if(row == 1){
+                this.$confirm('确定要清空全部数据吗?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.tableData = []   //清空数据
+                    this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+            }else{
+                this.$confirm('确定要清空该行数据吗?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    const index = this.tableData.indexOf(row);
+                    if (index !== -1) {
+                        this.tableData.splice(index, 1);
+                        this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                        });
+                    }
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+            }
+        },
         showHistory(){
             this.changepicker5(1)
             console.log(this.picker5)
@@ -289,7 +354,7 @@ export default{
 .batch-compute .headerr{
     display: flex;
     justify-content: space-between;
-    margin: 28px 24px
+    /* margin: 28px 24px */
 }
 .batch-compute .headerr span{
     width: 260px;
@@ -301,6 +366,16 @@ export default{
     line-height: 28px;
     text-align: left;
     font-style: normal;
+    margin-bottom: 25px
+}
+.batch-compute .title-s{
+    display: flex;
+    align-items: center;
+    margin-bottom: 17px
+}
+.batch-compute .title-s img{
+    height: 24px;
+    width: 24px
 }
 .batch-compute .headerr .right span{
     text-align: center;
@@ -315,14 +390,28 @@ export default{
     font-style: normal;
     cursor: pointer
 }
+.batch-compute .table-container{
+    margin-bottom: 24px
+}
+.el-table .el-table__cell {
+    padding: 0;
+}
+.table-container /deep/tr{
+    height: 40px;
+    background: none;
+    border: 1px solid #EDEDED;
+}
 .batch-compute .buttons{
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
+    margin: 12px 0 11px 0
 }
 .batch-compute .buttons .left{
     display: flex;
 }
-.batch-compute .buttons .left .add{
+.batch-compute .buttons .left .add, .left .batch-add, .buttons .right{
+    display:flex;
+    align-items: center;
     margin-left: 16px;
     width: 70px;
     height: 14px;
@@ -333,8 +422,12 @@ export default{
     line-height: 21px;
     text-align: left;
     font-style: normal;
-    cursor: pointer 
+    cursor: pointer;
+    width: 100px 
 
+}
+.batch-compute .buttons .right span{
+    width: 200px
 }
 .batch-compute .buttons .left .batch-add{
     margin-left: 27px;
@@ -347,11 +440,12 @@ export default{
     line-height: 21px;
     text-align: left;
     font-style: normal;
-    cursor: pointer
+    cursor: pointer;
+    width: 120px
 }
 .batch-compute .buttons .right{
     margin-right: 12px;
-    width: 100px;
+    width: 120px;
     height: 14px;
     font-family: SourceHanSansCN, SourceHanSansCN;
     font-weight: 400;
@@ -381,10 +475,24 @@ export default{
     font-style: normal;
     margin: auto
 }
+.batch-compute .select-model{
+    display: flex;
+    flex-direction: column
+}
+.batch-compute .select-model span{
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 400;
+    font-size: 16px;
+    color: #181818;
+    line-height: 22px;
+    text-align: left;
+    font-style: normal;
+    margin-bottom: 10px
+}
 /* 地图 */
 .mapview {
   /* height: 873px; */
-  height: calc( 100vh - 68px);
+  height: calc( 100vh - 100px);
   width: 1260px;
   top: 16px;
   border-radius: 6px
@@ -410,4 +518,7 @@ export default{
   border-radius: 6px;
   /* opacity: 0.6; */
 }
+
+
+
 </style>

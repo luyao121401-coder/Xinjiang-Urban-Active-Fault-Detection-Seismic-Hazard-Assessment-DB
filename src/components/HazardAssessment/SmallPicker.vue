@@ -29,11 +29,17 @@
                     <span>项目名称</span>
                     <el-select placeholder="请选择项目名称"></el-select>
                 </div>
-                <div class='item'>
+                <div class='item-date'>
                     <span>时相</span>
                     <div class="date">
                         <el-date-picker v-model="startDate" placeholder="开始日期时间"></el-date-picker>
-                        <span>至</span>
+                        <span style="
+                            width: 14px;
+                            font-size: 14px;
+                            color: #181818;
+                            text-align: left;
+                            font-style: normal;
+                            margin: 0 12px">至</span>
                         <el-date-picker v-model="endDate" placeholder="结束日期时间"></el-date-picker>
                     </div>
                 </div>
@@ -55,32 +61,32 @@ export default{
         return{
             startDate: '',
             endDate: '',
-            dialogShow1: false
+            dialogShow1: true
         }
     },
     mounted(){
-        console.log("这是smallpicker")
-        if(this.picke1 == 1){
-            this.dialogShow1 = true
-        }else{
-            this.dialogShow1 = false
-        }
+        // if(this.picke1 == 1){
+        //     this.dialogShow1 = true
+        // }else{
+        //     this.dialogShow1 = false
+        // }
     },
     computed: {
         ...mapGetters({
             picker1: "picker/picker1"
         })
     },
-    watch:{
-        picker1:{
-            handle(v){
-                console.log("smallllllllllll")
-                console.log(v)
-                this.dialogShow1 = !this.dialogShow1
-                console.log(this.dialogShow1)
-            }
-        }
-    },
+    // watch:{
+    //     picker1:{
+    //         handle(v){
+    //             if(v == 1){
+    //                 this.dialogShow1 = true
+    //             }else{
+    //                 this.dialogShow1 = false
+    //             }
+    //         }
+    //     }
+    // },
     methods:{
         ...mapActions({
             changepicker1: "picker/changepicker1"
@@ -92,32 +98,56 @@ export default{
 }
 </script>
 <style scoped>
-.el-dialog{
+/* /deep/.el-dialog{
     width: 698px;
     height: 608px;
     background: #FFFFFF;
     border-radius: 6px;
 }
+.el-dialog .title{
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 500;
+    font-size: 24px;
+    color: #181818;
+    line-height: 33px;
+    text-align: center;
+    font-style: normal;
+}
 .body{
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
-.body .item{
+.body .item,.body .item-date{
     display: flex;
     align-items: center;
     margin: 5px 0;
     justify-content: space-between;
 }
+.el-dialog .body .item span, .item-date span{
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 500;
+    font-size: 18px;
+    color: #181818;
+    line-height: 25px;
+    text-align: right;
+    font-style: normal;
+    width: 100px;
+    margin-right: 12px
+}
 .el-dialog__body{
     width: 100%
 }
-.body .item span{
-    width: 70px;
-    
-}
 .body .item /deep/.el-select{
-    width: 100%;
+    width: 478px;
     
+} 
+/deep/.el-input__inner{
+    background: #F9F9F9;
+    border-radius: 6px;
+    border: 2px solid #CCCCCC;
+    width: 478px;
+    height: 40px;
 }
 .date{
     width: 100%
@@ -126,10 +156,9 @@ export default{
     margin: 0 5px
 }
 .el-date-editor.el-input, .el-date-editor.el-input__inner {
-    width: calc(50% - 12px);
+    width: calc(50% - 18px)!important;
 }
 .bottom{
-    /* display: flex; */
     text-align: center;
     align-items: center;
     margin: 10px auto 0;
@@ -158,5 +187,93 @@ export default{
     color: #FFFFFF;
     text-align: center;
     font-style: normal;
+} */
+/deep/.el-dialog{
+    width: 698px;
+    height: 608px;
+    background: #FFFFFF;
+    border-radius: 6px;
 }
+.el-dialog .title{
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 500;
+    font-size: 24px;
+    color: #181818;
+    line-height: 33px;
+    text-align: center;
+    font-style: normal;
+}
+/deep/.el-dialog .body{
+    display: flex;
+    flex-direction: column;
+    width: 562px;
+    justify-content: center;
+    margin: auto
+}
+.el-dialog .body .item{
+    margin-bottom: 16px
+}
+.el-dialog .body .item span, .item-date span{
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 500;
+    font-size: 18px;
+    color: #181818;
+    line-height: 25px;
+    text-align: right;
+    font-style: normal;
+    width: 100px;
+    margin-right: 12px
+}
+.el-dialog .body .item, .body .item-date{
+    display: flex;
+    justify-content: space-between
+}
+/deep/.el-dialog .item .el-input__inner{
+    background: #F9F9F9;
+    border-radius: 6px;
+    border: 2px solid #CCCCCC;
+    width: 478px;
+    height: 40px;
+}
+/deep/.el-dialog .item-date .date{
+    display: flex;
+    justify-content: center
+}
+/deep/.el-dialog .item-date .el-input__inner{
+    background: #F9F9F9;
+    border-radius: 6px;
+    border: 2px solid #CCCCCC;
+    height: 40px;
+}
+.bottom{
+    text-align: center;
+    align-items: center;
+    margin: 10px auto 0;
+    margin-top: 48px
+}
+.bottom .el-button--default{
+    width: 200px;
+    height: 48px;
+    background: #FFFFFF;
+    border-radius: 6px;
+    border: 2px solid #97BBD8;
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000000;
+    text-align: center;
+    font-style: normal;
+}
+.bottom .el-button--primary{
+    width: 200px;
+    height: 48px;
+    background: #0054A0;
+    border-radius: 6px;
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 500;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-align: center;
+    font-style: normal;
+} 
 </style>
