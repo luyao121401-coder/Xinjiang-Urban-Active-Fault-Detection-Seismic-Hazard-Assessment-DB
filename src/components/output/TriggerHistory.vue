@@ -218,14 +218,14 @@ export default{
     border-radius: 6px;
     border: 2px solid #CCCCCC; */
     width: 380px;
-    height: 40px;
+    /* height: 40px; */
     background: #F9F9F9;
     border-radius: 6px;
     border: 2px solid #CCCCCC;
 }
 .trigger-history .left .main-search .el-select{
     width: 120px;
-    height: 40px;
+    /* height: 40px; */
     background: #F9F9F9;
     border-radius: 6px;
     border: 2px solid #CCCCCC;

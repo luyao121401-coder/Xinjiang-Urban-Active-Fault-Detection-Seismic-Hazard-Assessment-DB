@@ -6,6 +6,7 @@
         </div>
         <div class="right">
             <div class="menu" @click="jumpTo(1)">
+                <img src="@/assets/img/系统导航.png"></img>
                 <span>系统导航</span>
             </div>
             <el-divider direction="verical"></el-divider>
@@ -73,9 +74,17 @@ export default{
     align-items: center
 }
 .right .menu{
-    margin: 40px;
-    cursor: pointer
-
+    /* margin: 40px; */
+    padding:20px;
+    cursor: pointer;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center
+}
+.right .menu:hover{
+    background: #195392;
 }
 .right .menu span{ 
     width: 72px;
@@ -85,6 +94,11 @@ export default{
     font-weight: 400;
     color: #FFFFFF;
     line-height: 25px;
+}
+.right .menu img{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
 }
 .el-divider{
     width: 2px;

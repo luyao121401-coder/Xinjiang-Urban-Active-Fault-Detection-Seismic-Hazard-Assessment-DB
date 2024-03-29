@@ -8,7 +8,8 @@
         <div v-else class="output">
             <div class="top">
                 <div style="display: flex;align-items: center;cursor: pointer" @click="jumpTo()">
-                    <i class="el-icon-time"></i>
+                    <!-- <i class="el-icon-time"></i> -->
+                    <img style="margin-right: 10px" src="@/assets/img/计算记录.png"></img>
                     <span>触发记录</span>
                 </div>
             </div>

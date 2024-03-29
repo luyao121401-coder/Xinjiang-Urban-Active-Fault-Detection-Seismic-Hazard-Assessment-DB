@@ -13,7 +13,7 @@
                     <span>地震灾害损失预评估批量计算</span>
                     <div class="right" @click="showHistory()">
                         <!-- <img></img> -->
-                        <i class="el-icon-time" style="width: 16px;height: 16px;color: #1F60A7;"></i>
+                        <img style="margin-right: 10px" src="@/assets/img/计算记录.png"></img>
                         <span>计算记录</span>
                     </div>
                 </div>
@@ -366,7 +366,7 @@ export default{
     line-height: 28px;
     text-align: left;
     font-style: normal;
-    margin-bottom: 25px
+    /* margin-bottom: 25px */
 }
 .batch-compute .title-s{
     display: flex;
@@ -376,6 +376,11 @@ export default{
 .batch-compute .title-s img{
     height: 24px;
     width: 24px
+}
+.batch-compute .headerr .right{
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px
 }
 .batch-compute .headerr .right span{
     text-align: center;

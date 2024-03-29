@@ -1,8 +1,9 @@
 <template>
-    <div style="background: red;height: 98vh;background: #F9F9F9;">
-        <div>
+    <!-- <div style="background: red;height: 98vh;background: #F9F9F9;"> -->
+    <div style="background: red;height: calc(98vh - 68px);background: #F9F9F9;">
+        <!-- <div>
             <HeaderMenu></HeaderMenu>
-        </div>
+        </div> -->
         <div class="container">
             <div class="left">
                 <div class="title">
@@ -111,11 +112,11 @@
     </div>
 </template>
 <script>
-import HeaderMenu from "./HeaderMenu.vue"
+// import HeaderMenu from "./HeaderMenu.vue"
 import pagination from "./pagination.vue"
 
 export default{
-    components: { HeaderMenu, pagination },
+    components: { pagination },
     data(){
         return{
             searchKeyword: '',    //查询关键字
@@ -422,7 +423,7 @@ export default{
     display: flex
 }
 .top-group-right /deep/.el-input__inner{
-    background: #EEEEEE;
+    background: #EEEEEE!important;
     border-radius: 6px;
     border: none;
     font-family: PingFangSC, PingFang SC;
@@ -500,7 +501,9 @@ export default{
 }
 .right-body{
     margin-top: 16px;
-    height: calc(100% - 137px);
+    /* height: calc(100% - 137px); */
+    height: calc(100% - 100px);
+
 }
 /* .right-body{
     margin-top: 16px;
@@ -510,7 +513,7 @@ export default{
     height: 100%;
 }
 .table-list{
-    height: 100%;
+    height: 742px
     /* border: 1px solid #FFF; */
 }
 /deep/.el-table .el-table__cell:first-child .cell {
@@ -544,10 +547,6 @@ export default{
 .el-table{
     height: 100%;
     background: #F9F9F9;
-}
-.table-list {
-    width: 100%;
-    height: 100%;
 }
 .table-list /deep/ .el-table td.el-table__cell,
 .table-list /deep/.el-table th.el-table__cell.is-leaf {
@@ -583,10 +582,6 @@ export default{
     text-align: left;
     font-style: normal;
 }
-.table-list{
-    width: 100%;
-
-}
 .table-list /deep/ .el-table {
     height: calc(100%);
     border: none;
@@ -608,6 +603,14 @@ export default{
     line-height: 20px;
     text-align: left;
     font-style: normal;
+}
+.right-bottom{
+    position: absolute;
+    width: calc(100% - 269px);
+    display: flex;
+    align-items: center;
+    bottom: 0
+    /* height: 86px */
 }
 </style>
 

@@ -10,19 +10,22 @@
                 <div class="item">
                     <span>震中经度</span>
                     <el-input placeholder="请输入震中经度，如78.43"></el-input>
+                    <span style="position: absolute;right: 9px;font-size:14px">度</span>
                 </div>
                 <div class="item">
                     <span>震中纬度</span>
                     <el-input placeholder="请输入震中经度，如41.07"></el-input>
+                    <span style="position: absolute;right: 9px;font-size:14px">度</span>
                 </div>
-                <div class="item-date">
-                    <span>发震时刻</span>
+                <div class="item-date"style="position: relative">
+                    <span style="margin-right: 15px">发震时刻</span>
                     <el-date-picker
                     v-model="value"
                     type="date"
                     placeholder="请选择发震日期"
                     >
                     </el-date-picker>
+                    <i class="el-icon-date" style="position: absolute;right: 72px;top:13px;width:18px"></i>
                 </div>
                 <div class="item">
                     <span>地震震级</span>
@@ -242,11 +245,15 @@ export default{
     margin-left: 40px
 }
 .body .item-date /deep/.el-input__inner{
-    width: 205px;
+    width: 478px;
     height: 40px;
     background: #F9F9F9;
     border-radius: 6px;
     border: 2px solid #CCCCCC;
+    /* padding-left: 10px */
+}
+.body .item-date .el-input__icon{
+    display: none
 }
 .body .item-date span{
     /* margin-right: 14px */

@@ -6,7 +6,7 @@
         <div class="main">
             <div class="left" id="assess-results">
                 <div class="headerr">
-                    <span class="title">地震灾害风险普查</span>
+                    <span class="title" style="text-indent: 0">地震灾害风险普查</span>
                     <span>XXXX年XX月XX日，对XXXXXX、XXXXXX地区进行了地震
                         灾害损失预评估工作，依据《地震灾害风险评估技术规范》
                         （FXPC/DZ P-02）规定，本次地震灾害风险评估以区域地
@@ -16,14 +16,20 @@
                     </span>
                 </div>
                 <div class="item">
-                    <span class="title">评估方法</span>
+                    <div class="title-s">
+                        <img src="@/assets/icon/矩形@2x.png"></img>
+                        <span class="title">评估方法</span>
+                    </div>
                     <span>采用了地震灾害人员死亡风险评估模型、地震灾害
                         经济损失风险评估模型、建筑物易损性评估模型。（当前文
                         本为示例内容，仅用作效果展示）
                     </span>
                 </div>
                 <div class="item">
-                    <span class="title">评估结果</span>
+                    <div class="title-s">
+                        <img src="@/assets/icon/矩形@2x.png"></img>
+                        <span class="title">评估结果</span>
+                    </div>
                     <span>
                         结果描述结果描述结果描述结果描述结果描述结
                         果描述结果描述结果描述结果描述结果描述结果
@@ -31,7 +37,10 @@
                     </span>
                 </div>
                 <div class="item">
-                    <span class="title">建议措施</span>
+                    <div class="title-s">
+                        <img src="@/assets/icon/建议措施@2x.png"></img>
+                        <span class="title">建议措施</span>
+                    </div>
                     <span> 
                         结果描述结果描述结果描述结果描述结
                         果描述结果描述结果描述结果描述结果描述结果
@@ -39,12 +48,43 @@
                     </span>
                 </div>
                 <div class="item">
-                    <span class="title">专题图件</span>
-                    <span>图片图片图片图片图片图片图片图片图片图片图片图片图片图片</span>
+                    <div class="title-s">
+                        <img src="@/assets/icon/专题图件@2x.png"></img>
+                        <span class="title">专题图件</span>
+                    </div>
+                    <div class="pics">
+                        <div class="picss">
+                            <div class="pic">
+                                <img src="@/assets/img/地形图.jpg"></img>
+                            </div>
+                            <div>
+                                <span>致死性水平…</span>
+                            </div>
+                        </div>
+                        <div class="picss">
+                            <div class="pic">
+                                <img src="@/assets/img/地形图.jpg"></img>
+                            </div>
+                            <div>
+                                <span>危险区预判人…</span>
+                            </div>
+                        </div>
+                        <div class="picss">
+                            <div class="pic">
+                                <img src="@/assets/img/地形图.jpg"></img>
+                            </div>
+                            <div>
+                                <span>乡镇风险等级…</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="item">
-                    <span class="title">评估报告</span>
-                    <span>地震风险调查评估报告.pdf</span>
+                    <div class="title-s">
+                        <img src="@/assets/icon/评估报告@2x.png"></img>
+                        <span class="title">评估报告</span>
+                    </div>
+                    <span style="color: #1F60A7;cursor: pointer">地震风险调查评估报告.pdf</span>
                 </div>
             </div>
             <div>
@@ -205,7 +245,7 @@ export default{
 .main{
     display: flex;
     justify-content: space-between;
-    margin: 16px 16px 0;
+    margin: 16px 16px 0 24px;
 }
 .left{
     /* margin-top:16px; */
@@ -223,7 +263,8 @@ export default{
     flex-direction: column
 }
 .left .headerr span{
-    margin: 24px 0;
+    /* margin: 24px 0; */
+    text-indent: 2em; /* 设置首行缩进为2个字符 */
 }
 .left .item span, .headerr span{
     margin: 12px 0;
@@ -252,6 +293,49 @@ export default{
     line-height: 28px;
     text-align: left;
     font-style: normal;
+}
+.left .item .title-s{
+    display: flex;
+    align-items: center
+}
+.left .item .title-s img{
+    height: 24px;
+    width: 24px;
+    margin-right: 8px
+}
+.left .item .pics{
+    display: flex;
+    margin-right: 16px
+}
+.left .item .picss{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 16px
+}
+.left .item .pics span{
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    line-height: 17px;
+    text-align: center;
+    font-style: normal;
+}
+.left .item .pics .pic{
+    width: 84px;
+    height: 84px;
+    background: #EEEEEE;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px
+}
+.left .item .pics .pic img{
+    width: 74px;
+    height: 68px;
+    
 }
 .mapview {
   height: calc( 100vh - 100px);

@@ -1,5 +1,5 @@
 <template>
-    <div style="background: red;height: 98vh;background: #F9F9F9;">
+    <div>
         <!-- <div class="view-list" v-show="listShow">
             <div style="margin: 12px 16px">
                 <div class="header">
@@ -58,6 +58,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- <div class="items">
                 <span>探槽</span>
                 <div class="item" v-for="(item, index) in items" :key="index">
@@ -68,9 +69,9 @@
             </div> -->
         </div>
         <SmallPicker v-if="picker1 == 1"></SmallPicker>
-        <div>
+        <!-- <div>
             <HeaderMenu></HeaderMenu>
-        </div>
+        </div> -->
         <div class="container">
             <div class="left">
                 <span>选择专题</span>
@@ -199,13 +200,13 @@
     </div>
 </template>
 <script>
-import HeaderMenu from "./HeaderMenu.vue"
+// import HeaderMenu from "./HeaderMenu.vue"
 import { mapActions, mapGetters } from "vuex"
 import SmallPicker from "./SmallPicker.vue"
 import pagination from "./pagination.vue"
 
 export default{
-    components: { HeaderMenu, SmallPicker, pagination},
+    components: { SmallPicker, pagination},
     data(){
         return{
             current: 1,
@@ -471,7 +472,8 @@ export default{
     text-align: left;
     font-style: normal;
     height: 40px;
-    margin: 8px 0
+    margin: 8px 0;
+    border-radius: 6px
 }
 .left /deep/.el-tree-node__label{
     font-size: 16px
@@ -501,7 +503,7 @@ export default{
     display: flex
 }
 .top-group-right /deep/.el-input__inner{
-    background: #EEEEEE;
+    background: #EEEEEE!important;
     border-radius: 6px;
     border: none;
     font-family: PingFangSC, PingFang SC;
@@ -575,7 +577,8 @@ export default{
     margin: 0 20px
 }
 .table-list{
-    height: 100%;
+    height: 742px
+    /* height: 100%; */
     /* border: 1px solid #FFF; */
 }
 /deep/.el-table .el-table__cell:first-child .cell {
@@ -591,7 +594,7 @@ export default{
 }
 .right-body{
     margin-top: 16px;
-    height: calc(100% - 137px);
+    height: calc(100% - 100px);
 }
 .right .right-body .table-list .cell-inside{
     display: flex;
@@ -611,8 +614,10 @@ export default{
     background: #F9F9F9;
 }
 .table-list {
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
+    /* height: calc(100%) */
+    height: 742px
 }
 .table-list /deep/ .el-table td.el-table__cell,
 .table-list /deep/.el-table th.el-table__cell.is-leaf {
@@ -647,10 +652,6 @@ export default{
     line-height: 20px;
     text-align: left;
     font-style: normal;
-}
-.table-list{
-    width: 100%;
-
 }
 .table-list /deep/ .el-table {
     height: calc(100%);
@@ -747,6 +748,14 @@ export default{
     line-height: 20px;
     text-align: left;
     font-style: normal;
+}
+.right-bottom{
+    position: absolute;
+    width: calc(100% - 269px);
+    display: flex;
+    align-items: center;
+    bottom: 0
+    /* height: 86px */
 }
 </style>
 

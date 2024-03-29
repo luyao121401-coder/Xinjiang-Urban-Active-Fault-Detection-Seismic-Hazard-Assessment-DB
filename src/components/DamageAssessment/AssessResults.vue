@@ -347,6 +347,10 @@ export default{
     margin-bottom: 8px
     
 }
+.left .item .pics .pic img{
+    width: 74px;
+    height: 68px; 
+}
 .left .item .title-s{
     display: flex;
     align-items: center

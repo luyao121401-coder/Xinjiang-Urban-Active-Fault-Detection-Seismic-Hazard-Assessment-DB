@@ -153,7 +153,7 @@ export default{
 </script>
 <style scoped>
 .side-bar{
-    height: calc(100% - 93px);
+    height: calc(100% - 68px);
     background: #FFF;
     padding: 14px 16px 11px;
     width: 308px

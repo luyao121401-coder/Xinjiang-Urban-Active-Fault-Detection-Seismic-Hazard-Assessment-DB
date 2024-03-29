@@ -1,65 +1,69 @@
 <template>
-    <div style="height: calc(100% - 16px)">
+    <div style="height: calc(100% - 16px);">
         <div>
             <HeaderMenu></HeaderMenu>
         </div>
-        <side-bar class="side-bar"></side-bar>
-        <div>
-            <mapview class="mapview" ref="mapview">
-                <div class='map-tool'>
-                    <div @click="draw()" class="tool-button" title="标绘">
-                    <img
-                        :src=" isUseDraw ? require('@/assets/images/绘制.png') : require('@/assets/images/tool_draw_icon.png')"
-                        alt
-                        width="28px"
-                        height="28px"
-                    />
+        <DataServe v-if="page6 == 1"></DataServe>
+        <ThematicBrowse v-if="page5 == 1"></ThematicBrowse>
+        <div v-if="page4 == 1" style="display: flex;justify-content: space-between">
+            <side-bar class="side-bar"></side-bar>
+            <div>
+                <mapview class="mapview" ref="mapview">
+                    <div class='map-tool'>
+                        <div @click="draw()" class="tool-button" title="标绘">
+                        <img
+                            :src=" isUseDraw ? require('@/assets/images/绘制.png') : require('@/assets/images/tool_draw_icon.png')"
+                            alt
+                            width="28px"
+                            height="28px"
+                        />
+                        </div>
+                        <div
+                        @click="measure()"
+                        class="tool-button"
+                        title="测量工具"
+                        >
+                        <img
+                            :src=" isUseMeasure ? require('@/assets/images/测量.png') : require('@/assets/images/tool_measure_icon.png')"
+                            alt
+                            width="28px"
+                            height="28px"
+                        />
+                        </div>
+                        <div
+                        @click="queryDraw()"
+                        class="tool-button"
+                        :class="{ toolButtonPress: isUseQuery }"
+                        title="空间查询"
+                        >
+                        <img
+                            :src="require('@/assets/icon/空间查询@2x.png')"
+                            alt
+                            width="28px"
+                            height="28px"
+                        />
+                        </div>
                     </div>
-                    <div
-                    @click="measure()"
-                    class="tool-button"
-                    title="测量工具"
-                    >
-                    <img
-                        :src=" isUseMeasure ? require('@/assets/images/测量.png') : require('@/assets/images/tool_measure_icon.png')"
-                        alt
-                        width="28px"
-                        height="28px"
-                    />
-                    </div>
-                    <div
-                    @click="queryDraw()"
-                    class="tool-button"
-                    :class="{ toolButtonPress: isUseQuery }"
-                    title="空间查询"
-                    >
-                    <img
-                        :src="require('@/assets/icon/空间查询@2x.png')"
-                        alt
-                        width="28px"
-                        height="28px"
-                    />
-                    </div>
-                </div>
-                <SwitchMap id="swtichMap"></SwitchMap>
-                <footinfo class='footinfo'></footinfo>
-                <draw-menu-view
-                    ref="drawView"
-                    v-show="this.isUseDraw == true"
-                    class="measure"
-                    @close="drawClose()"
-                ></draw-menu-view>
-                <MeasureMenuView
-                    ref="measureView"
-                    v-if="this.isUseMeasure == true"
-                    class="measure"
-                    @close="measureClose()"
-                ></MeasureMenuView>
-                <draw-style-panel 
-                    class="drawStylePanel"
-                    v-show="this.drawStyle == true"
-                ></draw-style-panel>
-            </mapview>
+                    <SwitchMap id="swtichMap"></SwitchMap>
+                    <footinfo class='footinfo'></footinfo>
+                    <draw-menu-view
+                        ref="drawView"
+                        v-show="this.isUseDraw == true"
+                        class="measure"
+                        @close="drawClose()"
+                    ></draw-menu-view>
+                    <MeasureMenuView
+                        ref="measureView"
+                        v-if="this.isUseMeasure == true"
+                        class="measure"
+                        @close="measureClose()"
+                    ></MeasureMenuView>
+                    <draw-style-panel 
+                        class="drawStylePanel"
+                        v-show="this.drawStyle == true"
+                    ></draw-style-panel>
+                </mapview>
+            </div>
         </div>
     </div>
 </template>
@@ -72,6 +76,10 @@ import DrawMenuView from "../omap/DrawMenuView.vue";
 import MeasureMenuView from "../omap/MeasureMenuView.vue";
 import SwitchMap from "../omap/SwitchMap.vue";
 import SideBar from "./SideBar.vue"
+import { mapActions, mapGetters } from "vuex"
+import DataServe from "./DataServe.vue"
+import ThematicBrowse from "./ThematicBrowse.vue"
+
 
 
 
@@ -86,7 +94,9 @@ export default{
         DrawMenuView,
         MeasureMenuView,
         SwitchMap,
-        SideBar
+        SideBar,
+        DataServe,
+        ThematicBrowse
     },
     data(){
         return{
@@ -96,6 +106,14 @@ export default{
             isUseQuery: false,
             isPopOpen: false
         }
+    },
+    computed: {
+        ...mapGetters({
+            page4: "page/page4",
+            page5: "page/page5",
+            page6: "page/page6",
+
+        })
     },
     mounted() {
         this.$nextTick(() => {
@@ -121,6 +139,11 @@ export default{
         }
     },
     methods:{
+        ...mapActions({
+            changepage4: "page/changepage4",
+            changepage5: "page/changepage5",
+            changepage6: "page/changepage6"
+        }),
         //控制切换底图div
         showSwitchPop() {
           if (this.isPopOpen == false){
@@ -203,11 +226,12 @@ export default{
     line-height: 0px;
 }
 .side-bar{
-    position: absolute;
-    z-index: 999;
+    /* position: absolute; */
+    /* z-index: 999; */
 }
 .mapview {
-  height: calc(100vh - 100px);
+  height: calc(100vh - 68px);
+  width: calc(100vw - 308px);
   /* width:100vw; */
   /* background: red; */
 }

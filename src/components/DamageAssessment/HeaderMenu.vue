@@ -6,19 +6,20 @@
             <span class="title">城市活动断层探测与地震危险性评价信息系统</span>
         </div>
         <div class="right">
-            <div class="menu" @click="jumpTo(1)">
+            <div :class=" page1 == 1 ? 'menu chengeit' : 'menu'" @click="jumpTo(1)">
                 <span class="text">评估成果</span>
             </div>
             <el-divider direction="vertical"></el-divider>
-            <div class="menu" @click="jumpTo(2)">
+            <div :class=" page2 == 1 ? 'menu chengeit' : 'menu'" @click="jumpTo(2)">
                 <span >批量计算</span>
             </div>
             <el-divider direction="vertical"></el-divider>
-            <div class="menu" @click="jumpTo(4)">
+            <div :class=" page3 == 1 ? 'menu chengeit' : 'menu'" @click="jumpTo(4)">
                 <span >区域检索与计算</span>
             </div>
             <el-divider direction="verical"></el-divider>
-            <div class="menu" @click="jumpTo(3)">
+            <div class="menu" @click="jumpTo(3)" style="display: flex;align-items:center;">
+                <img src="@/assets/img/系统导航.png" alt="">
                 <span>系统导航</span>
             </div>
             <el-divider direction="verical"></el-divider>
@@ -119,22 +120,39 @@ export default{
     align-items: center
 }
 .right .menu{
-    margin: 40px;
-    cursor: pointer
-
+    /* margin: 40px; */
+    padding:20px;
+    cursor: pointer;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center
+}
+.right .menu:hover{
+    background: #195392;
+}
+.chengeit{
+  background: #195392;
+}
+.right .menu img{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
 }
 .right .menu span{ 
-    width: 72px;
     height: 25px;
     font-size: 18px;
     font-family: PingFangSC, PingFang SC;
     font-weight: 400;
     color: #FFFFFF;
     line-height: 25px;
+    /* margin: auto */
 }
 .el-divider{
     width: 2px;
     height: 21px;
     background: rgba(255,255,255,0.1);
+    margin: 0
 }
 </style>
