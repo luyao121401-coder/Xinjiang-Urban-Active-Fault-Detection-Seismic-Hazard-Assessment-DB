@@ -85,7 +85,7 @@
             <!-- <el-divider v-if="page2 == 1" direction="vertical"></el-divider> -->
             <BatchCompute v-if="page2 == 1"></BatchCompute>
             <AreaRetrieval v-if="page3 == 1"></AreaRetrieval>
-            <div v-show="picker5 != 1 && picker7 !==1">
+            <div v-show="picker5 !=1 && picker7 !=1">
                 <mapview class="mapview" ref="mapview">
                     <SwitchMap id="swtichMap"></SwitchMap>
                     <footinfo class='footinfo'></footinfo>

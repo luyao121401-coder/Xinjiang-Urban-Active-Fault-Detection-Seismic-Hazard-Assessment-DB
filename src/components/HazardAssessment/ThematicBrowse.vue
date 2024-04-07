@@ -209,6 +209,33 @@ export default{
     components: { SmallPicker, pagination},
     data(){
         return{
+            datalist: [
+                {
+                     name: '遥感',
+                     arr:[]
+                },{
+                     name: 'd',
+                     arr:[]
+                },{
+                     name: '遥感',
+                     arr:[]
+                },{
+                     name: '遥感',
+                     arr:[]
+                },{
+                     name: '遥感',
+                     arr:[]
+                },{
+                     name: '遥感',
+                     arr:[]
+                },{
+                     name: '遥感',
+                     arr:[]
+                },{
+                     name: '遥感',
+                     arr:[]
+                }   
+            ],
             current: 1,
             pageSize: 16,
             total: null,
@@ -402,7 +429,6 @@ export default{
             if (!foundMatch) {
                 this.dataList[categoryName].push(row.bh);
             }
-
             console.log("data", this.dataList)
         },
         handleNodeClick(data){

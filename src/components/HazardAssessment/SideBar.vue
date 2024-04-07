@@ -205,14 +205,15 @@ export default{
 }
 .side-bar /deep/.el-tree-node__content{
     height: 40px;
+    display:flex;
+    width: 100%;
+    align-items: center
 }
 .side-bar /deep/.el-tree-node__expand-icon {
-    width: 5px;
-    height: 9px;
     color: #000000;
     opacity: 0.5;
     padding: 5px 8px;
-    margin-right: 7px
+    margin-right: 7px;
 }
 .side-bar /deep/.el-checkbox__input.is-checked .el-checkbox__inner, /deep/.el-checkbox__input.is-indeterminate .el-checkbox__inner {
     background: #777777;
@@ -222,8 +223,8 @@ export default{
     background: #181818;
     border: 2px solid #181818;
 }
-.side-bar .el-checkbox__inner::after {
-    height: 5px;
+.side-bar /deep/.el-checkbox__inner::after {
+    /* height: 5px; */
     left: 3px;
     top: 0
 }

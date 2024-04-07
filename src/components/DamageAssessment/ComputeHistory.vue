@@ -176,8 +176,9 @@ export default{
     font-style: normal;
 }
 .compute-history .search-group /deep/.el-input__inner{
-    background-color: #F9F9F9;
-    border: none
+    background-color: #F9F9F9!important;
+    border: none;
+    height: 36px
 }
 .compute-history .main .main-body{
     display: flex;

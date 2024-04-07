@@ -45,13 +45,17 @@ export default{
             page2: "page/page2",
             page3: "page/page3",
             page1: "page/page1",
+            picker5: "picker/picker5",
+            picker7: "picker/picker7"
         })
     },
     methods:{
         ...mapActions({
             changepage2: "page/changepage2",
             changepage3: "page/changepage3",
-            changepage1: "page/changepage1"
+            changepage1: "page/changepage1",
+            changepicker5: "picker/changepicker5",
+            changepicker7: "picker/changepicker7"
         }),
         jumpTo(num){
             switch(num){
@@ -66,6 +70,7 @@ export default{
                     this.changepage2(1)
                     this.changepage1(0)
                     this.changepage3(0)
+                    this.changepicker7(0)
                     break;
                 case 3:
                     this.$router.push('/');
@@ -74,6 +79,7 @@ export default{
                     this.changepage2(0)
                     this.changepage1(0)
                     this.changepage3(1)
+                    this.changepicker5(0)
                 break;           
             }
         }
