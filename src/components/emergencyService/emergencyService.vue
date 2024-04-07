@@ -29,11 +29,15 @@
         <el-row :gutter="20">
           <el-col :span="12">
             <label>震中经度(°)</label>
-            <el-input v-model="form.name" placeholder="请输入经度, 如: 0.00"></el-input>
+            <el-input v-model="form.name" placeholder="请输入经度, 如: 0.00">
+              <img style="margin-top: 50%;" slot="prefix" src="@/assets/img/经度.png" alt="">
+            </el-input>
           </el-col>
           <el-col :span="12">
             <label>震中纬度(°)</label>
-            <el-input v-model="form.name" placeholder="请输入纬度, 如: 0.00"></el-input>
+            <el-input v-model="form.name" placeholder="请输入纬度, 如: 0.00">
+              <img style="margin-top: 50%;" slot="prefix" src="@/assets/img/纬度.png" alt="">
+            </el-input>
           </el-col>
         </el-row>
         <el-row :gutter="20">
@@ -49,7 +53,15 @@
         <el-row :gutter="20">
           <el-col :span="12">
             <label>发震时刻(UTC+8)</label>
-            <el-input v-model="form.name" placeholder="请选择发震时刻"></el-input>
+            <el-date-picker
+              v-model="form.startTime"
+              :picker-options="pickerOptions"
+              style="display: block; width: 100%"
+              format="yyyy-MM-dd HH:mm"
+              value-format="timestamp"
+              type="datetime"
+              placeholder="请选择发震时刻"
+            />
             <span style="color: #F87A35;font-size: 14px;">
               <i class="el-icon-warning-outline"></i>
               仅可设定的当前时间之前的时间作为发震时刻
@@ -78,13 +90,32 @@ export default{
          form: {},
          whetherDisabled: true,
          btnType: 'info',
-        //  btnType: 'primary'
+         pickerOptions: {
+          disabledDate: time => {
+            return time.getTime() > Date.now()
+          },
+          selectableRange:'00:00:00 - ' + new Date().getHours() + ':'+(new Date().getMinutes()+1)+':00'
+        }
       }
+  },
+  watch:{
+    // 开始时间
+    'form.startTime'(selectTime){
+      const date = new Date(new Date(selectTime).setHours(0,0,0,0)).getTime()
+      const today = new Date(new Date().setHours(0,0,0,0)).getTime()
+      if (date < today){
+        // 当选择的日期小于当天的时候，这个时候就要把时分秒的限制打开
+        this.pickerOptions.selectableRange = '00:00:00 - 23:59:59'
+      }else {
+        // 当选择的日期等于当天的时候，这时需要限制时分秒小于当前时间
+        this.pickerOptions.selectableRange =  new Date().getHours() + ':'+(new Date().getMinutes()+1)+':00' - '- 23:59:59'
+      }
+    },
   },
   methods:{
     gomergencyhistory(){
       this.$router.push({name: 'mergencyhistory'})
-    }
+    },
   }
 }
 </script>

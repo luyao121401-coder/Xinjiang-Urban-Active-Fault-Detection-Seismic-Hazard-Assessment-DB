@@ -19,7 +19,7 @@
         <!-- <div style="color: #181818;background-color: #EEEEEE;width: 100%;height: 100%;" slot="append">搜索</div> -->
         <div class="search_btn" slot="suffix">搜索</div>
       </el-input>
-      <el-select class="input_div" v-model="value" placeholder="全部响应等级">
+      <el-select class="input_div" v-model="query.level" placeholder="全部响应等级">
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -68,11 +68,26 @@
   </div>
 </template>
 <script>
+import { addWorkdetail,getWorklist,updateWorkGrade } from '@/http/api/emergency.js'
 export default{
   data(){
-      return{
-         
-      }
+    return{
+      query: {
+        level: 4,
+        type: 1,
+        pageNumber: 1,
+        pageSize: 10,
+      },
+      options: [
+        {label: "一级应急响应", value: 1},
+        {label: "二级应急响应", value: 2},
+        {label: "三级应急响应", value: 3},
+        {label: "四级应急响应", value: 4},
+      ],
+    }
+  },
+  mounted() {
+    this.getWorklist()
   },
   methods:{
     goback(){
@@ -80,6 +95,11 @@ export default{
     },
     quakeDetail(){
       this.$router.push({path: 'quakeDetail'})
+    },
+    getWorklist(){
+      getWorklist(this.query).then(res=>{
+        console.log(res, '888888888888888888888888888')
+      })
     }
   }
 }
@@ -168,7 +188,7 @@ h1{
 }
 .inventoryList{
   width: 100%;
-  max-height: 520px;
+  max-height: 590px;
   overflow: auto;
   padding-top: 16px;
 }
