@@ -473,37 +473,59 @@ export default {
 
     // 截图功能隐藏
     // ignoreElementIds 截图时排除某个元素
-    mapCapture(ignoreElementIds) {
-      let canvasID = this.$refs.rootmap;
-      let that = this;
-      let imgText = 1;
-      let a = document.createElement("a");
-      html2canvas(canvasID, {
-        ignoreElements: (element) => {
-          if (
-            element.id == "fullscreen" ||
-            element.id == "overview" ||
-            element.id == "map-capture"
-          ) {
-            return true;
-          }
-          if (ignoreElementIds.indexOf(element.id) != -1) return true;
-        },
+    // mapCapture(ignoreElementIds) {
+    //   let canvasID = this.$refs.rootmap;
+    //   let that = this;
+    //   let imgText = 1;
+    //   let a = document.createElement("a");
+    //   html2canvas(canvasID, {
+    //     ignoreElements: (element) => {
+    //       if (
+    //         element.id == "fullscreen" ||
+    //         element.id == "overview" ||
+    //         element.id == "map-capture"
+    //       ) {
+    //         return true;
+    //       }
+    //       if (ignoreElementIds.indexOf(element.id) != -1) return true;
+    //     },
+    //   }).then((canvas) => {
+    //     let dom = document.body.appendChild(canvas);
+    //     dom.style.display = "none";
+    //     a.style.display = "none";
+    //     document.body.removeChild(dom);
+    //     // return
+    //     let blob = that.dataURLToBlob(dom.toDataURL("image/png", 1));
+    //     a.setAttribute("href", URL.createObjectURL(blob));
+    //     //这块是保存图片操作  可以设置保存的图片的信息
+    //     a.setAttribute("download", imgText + ".png");
+    //     imgText += 1;
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     URL.revokeObjectURL(blob);
+    //     document.body.removeChild(a);
+    //   });
+    // },
+    // --- 截图功能核心修复 ---
+    mapCapture(ignoreId) {
+      const target = this.$refs.rootmap;
+      if (!target) return;
+
+      const ignoreList = ["fullscreen", "overview", "map-capture", "zoomin", "rotate", ignoreId];
+
+      html2canvas(target, {
+        useCORS: true,      // 必须开启跨域瓦片截取
+        allowTaint: false,
+        logging: false,
+        scale: window.devicePixelRatio || 1,
+        ignoreElements: (el) => ignoreList.includes(el.id),
       }).then((canvas) => {
-        let dom = document.body.appendChild(canvas);
-        dom.style.display = "none";
-        a.style.display = "none";
-        document.body.removeChild(dom);
-        // return
-        let blob = that.dataURLToBlob(dom.toDataURL("image/png", 1));
-        a.setAttribute("href", URL.createObjectURL(blob));
-        //这块是保存图片操作  可以设置保存的图片的信息
-        a.setAttribute("download", imgText + ".png");
-        imgText += 1;
-        document.body.appendChild(a);
-        a.click();
-        URL.revokeObjectURL(blob);
-        document.body.removeChild(a);
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = `Map_${new Date().getTime()}.png`;
+        link.click();
+      }).catch(err => {
+        console.error("截图失败:", err);
       });
     },
     //图片格式转换方法
@@ -788,7 +810,7 @@ export default {
     width: 40px;
     height: 40px;
     right: 15px;
-    top: 227px;
+    top: 183px;
     border: none;
     cursor: pointer
 }

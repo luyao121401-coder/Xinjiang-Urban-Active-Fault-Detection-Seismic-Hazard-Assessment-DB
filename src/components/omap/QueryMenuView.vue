@@ -45,12 +45,18 @@ import { DrawTool } from "./js/DrawTool";
 import MenuItemBtn from '../Map/MenuItemBtn.vue';
 
 // 尝试引入 jsts
+// let jsts;
+// try {
+//   jsts = require("jsts");
+// } catch (e) {
+//   // 如果没有安装 jsts 库，缓冲区功能可能受限
+//   console.warn("请确保已安装 jsts 库: npm install jsts");
+// }
 let jsts;
 try {
   jsts = require("jsts");
 } catch (e) {
-  // 如果没有安装 jsts 库，缓冲区功能可能受限
-  console.warn("请确保已安装 jsts 库: npm install jsts");
+  console.error("请确认已安装 jsts 依赖: npm install jsts");
 }
 
 export default {
