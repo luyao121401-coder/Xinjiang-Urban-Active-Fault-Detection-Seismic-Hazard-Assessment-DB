@@ -58,6 +58,12 @@
                         class="measure"
                         @close="measureClose()"
                     ></MeasureMenuView>
+                    <QueryMenuView
+                        ref="queryMenuView"
+                        v-if="this.isUseQuery == true"
+                        class="query"
+                        @close="queryDrawClose()"
+                    ></QueryMenuView>
                     <draw-style-panel 
                         class="drawStylePanel"
                         v-show="this.drawStyle == true"
@@ -75,6 +81,7 @@ import DrawStylePanel from "../omap/DrawStylePanel.vue";
 import DrawMenuView from "../omap/DrawMenuView.vue";
 import MeasureMenuView from "../omap/MeasureMenuView.vue";
 import SwitchMap from "../omap/SwitchMap.vue";
+import QueryMenuView from "../omap/QueryMenuView.vue";
 import SideBar from "./SideBar.vue"
 import { mapActions, mapGetters } from "vuex"
 import DataServe from "./DataServe.vue"
@@ -92,6 +99,7 @@ export default{
         footinfo, 
         DrawStylePanel,
         DrawMenuView,
+        QueryMenuView,
         MeasureMenuView,
         SwitchMap,
         SideBar,
@@ -285,6 +293,11 @@ export default{
   cursor: pointer;
 }
 .measure {
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.query {
   top: 16px;
   left: 50%;
   transform: translateX(-50%);
