@@ -1,5 +1,5 @@
 <template>
-  <div id="map" :class="ind == 5 && tab != 2 && pos == 1 ? 'mapp' : ( ind == 5 && tab != 2 && pos == 0 ? 'mappp' : 'map' ) " ref="rootmap">
+  <div id="map" :class="mapClass" ref="rootmap">
     <div id="zoomin" class="zoom" v-if="isShowZoomView">
       <!-- <img src="../../assets/images/max.png" alt="" />
       <img src="../../assets/images/min.png" alt="" /> -->
@@ -35,7 +35,11 @@ import {
   DragRotateAndZoom,
   defaults as defaultInteractions,
 } from "ol/interaction";
-import { Group as LayerGroup, Tile as TileLayer } from "ol/layer";
+
+import { Group as LayerGroup, Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
+import VectorSource from "ol/source/Vector";
+import GeoJSON from "ol/format/GeoJSON";
+import { Style, Stroke, Circle, Fill } from "ol/style";
 
 import Collection from "ol/Collection";
 import XYZ from "ol/source/XYZ";
@@ -44,6 +48,7 @@ import {
   addProjection,
   addCoordinateTransforms,
 } from "ol/proj";
+import { fromLonLat } from "ol/proj";
 import EventConst, { OMEvent } from "./js/OMapEvent";
 import { gcjMecator, projts } from "./js/gcj02";
 // import PopupFeature from "ol-ext/overlay/PopupFeature";
@@ -53,9 +58,10 @@ import html2canvas from "html2canvas";
 
 import Popup from "../../ols/overlay/popups2";
 import "../../ols/overlay/Popup.css";
-
+import { click } from "ol/events/condition";
 import QiuSuo1 from "@/ols/layer/qiusuo1";
 import { mapActions, mapGetters } from "vuex";
+import { SPATIAL_DATA, FIELD_ALIAS } from '@/public/data/sidebardata.js';
 
 
 export default {
@@ -93,17 +99,19 @@ export default {
       map: null,
       omEvent: {},
       overviewMapLayer: null,
-      //底图个张图层 底图 国界线 标注层
       baselayer0: null,
       baselayer1: null,
       baselayer2: null,
-      //默认图层原
       source0: null,
       source1: null,
       source2: null,
-
       select: null,
       popup: null,
+      activeVectorLayers: new Set(),
+      defaultViewConfig: {
+        center: [85.0, 41.5],
+        zoom: 6
+      }
     };
   },
   components: {},
@@ -113,8 +121,14 @@ export default {
           tab: "map/tab",
           pos: "map/pos",
           page0: "page/page0"
-          
       }),
+      mapClass() {
+          if (this.ind == 5 && this.tab != 2) {
+            if (this.pos == 1) return 'mapp';
+            if (this.pos == 0) return 'mappp';
+          }
+          return 'map';
+      }
   },
   // watch:{
   //   ind:{
@@ -129,7 +143,7 @@ export default {
   mounted() {
     this.omEvent = new OMEvent(this);
     console.log(this.omEvent);
-    //投影变换 浩洋
+    //投影变换
     addProjection(gcjMecator());
     addCoordinateTransforms(
       "EPSG:4326",
@@ -160,38 +174,56 @@ export default {
     // }
   },
   methods: {
+//    initMap() {
+//      let map = new Map({
+//        target: "map",
+//        interactions: defaultInteractions().extend([new DragRotateAndZoom()]),
+//        controls: defaultControls({
+//          attribution: false,
+//          zoom: false,
+//          rotate: false,
+//        }),
+//        view: new View({
+//          center: new Transform([98.89, 40.18], "EPSG:4326", "EPSG:3857"),
+//          zoom: 4,
+//          minZoom: 1,
+//          maxZoom: 18,
+//          projection: "EPSG:3857",
+//        }),
+//
+//      });
+//      // HistoricalEQParameter-历史地震震源参数-点
+//      // RegionalPropagationPathDurationModel-区域传播路径持时模型-面
+//      // RegionalQualityFactor-区域品质因子-面
+//      // SourceRuptureModel-震源破裂模型-面
+//      // StationAndSiteAmplificationCoefficient-强震动台站及场地放大系数-点
+//      // let layer  = new QiuSuo1({
+//      //   layerName: 'SourceRuptureModel'
+//      // });
+//      // layer.setZIndex(100);
+//      // map.addLayer(layer);
+//      // layer.getSource().on("featuresloadend", function (e) {
+//      //   map.getView().fit(layer.getSource().getExtent(), {
+//      //     padding: [50, 50, 50, 300],
+//      //   });
+//      // });
+//      this.map = map;
+//      this.omEvent.setMap(map);
+//    },
+
     initMap() {
       let map = new Map({
         target: "map",
         interactions: defaultInteractions().extend([new DragRotateAndZoom()]),
-        controls: defaultControls({
-          attribution: false,
-          zoom: false,
-          rotate: false,
-        }),
+        controls: defaultControls({ attribution: false, zoom: false, rotate: false }),
         view: new View({
-          center: new Transform([98.89, 40.18], "EPSG:4326", "EPSG:3857"),
-          zoom: 4,
+          center: fromLonLat(this.defaultViewConfig.center),
+          zoom: this.defaultViewConfig.zoom,
           minZoom: 1,
           maxZoom: 18,
           projection: "EPSG:3857",
         }),
       });
-      // HistoricalEQParameter-历史地震震源参数-点
-      // RegionalPropagationPathDurationModel-区域传播路径持时模型-面
-      // RegionalQualityFactor-区域品质因子-面
-      // SourceRuptureModel-震源破裂模型-面
-      // StationAndSiteAmplificationCoefficient-强震动台站及场地放大系数-点
-      // let layer  = new QiuSuo1({
-      //   layerName: 'SourceRuptureModel'
-      // });
-      // layer.setZIndex(100);
-      // map.addLayer(layer);
-      // layer.getSource().on("featuresloadend", function (e) {
-      //   map.getView().fit(layer.getSource().getExtent(), {
-      //     padding: [50, 50, 50, 300],
-      //   });
-      // });
       this.map = map;
       this.omEvent.setMap(map);
     },
@@ -227,7 +259,7 @@ export default {
       this.baselayer0.setSource(this.source0);
       this.baselayer1.setSource(this.source1);
       this.baselayer2.setSource(this.source2);
-    
+
 
       this.omEvent.addLayer(baselayerGroup);
     },
@@ -281,34 +313,57 @@ export default {
       if (this.isShowZoomView) this.map.addControl(zoom);
       if (this.isShowRotateView) this.map.addControl(rotate);
 
-      
-      // // 添加删除判断
-      // if (this.isShowOverview && this.ind !== 5) {
-      //   this.map.addControl(overviewMapControl);
-      // }
-      // if (this.isShowFullscreen && this.ind !== 5) {
-      //   this.map.addControl(screen);
-      // }
-      // if (this.isShowZoomView && this.ind !== 5) {
-      //   this.map.addControl(zoom);
-      // }
-      // if (this.isShowRotateView && this.ind !== 5) {
-      //   this.map.addControl(rotate);
-      // }
-
-
       this.select = new Select({
-        condition: function (mapBrowserEvent) {
-          return (
-            mapBrowserEvent.type == "singleclick" &&
-            JSON.parse(localStorage.getItem("user"))
-          );
-        },
+        condition: click,
         hitTolerance: 5,
       });
       this.map.addInteraction(this.select);
+
+      this.select.on("select", (e) => {
+        try {
+            const feature = e.selected[0];
+            if (feature) {
+              const props = feature.getProperties();
+              const coordinate = e.mapBrowserEvent.coordinate;
+
+              // 构建弹窗 HTML 结构
+              let content = '<div class="popup-wrapper">';
+              // 标题栏
+              content += '<div class="popup-header"><span class="header-title">要素详情</span></div>';
+              // 内容表格
+              content += '<div class="popup-scroll"><table class="info-table">';
+
+              const aliasMap = FIELD_ALIAS || {};
+
+              Object.keys(props).forEach((key, index) => {
+                const hiddenKeys = ['geometry', 'my_id', 'my_layer_id'];
+                if (!hiddenKeys.includes(key)) {
+                  const label = aliasMap[key] || key;
+                  const value = (props[key] !== null && props[key] !== undefined) ? props[key] : '-';
+                  content += `<tr><th class="info-label">${label}</th><td class="info-value">${value}</td></tr>`;
+                }
+              });
+
+              content += '</table></div>';
+              // 底部操作栏
+              content += '<div class="popup-actions"><button class="btn-primary">查看报告</button></div>';
+              content += '</div>';
+
+              if (this.popup && typeof this.popup.show === 'function') {
+                this.popup.show(coordinate, content);
+              }
+            } else {
+              if (this.popup && typeof this.popup.hide === 'function') {
+                this.popup.hide();
+              }
+            }
+        } catch (err) {
+            console.error(err);
+        }
+      });
+
       this.omEvent.setMapSelect(this.select);
-      //属性弹窗
+
       let popup = new Popup({
         className: "ol-popup",
         select: this.select,
@@ -319,10 +374,69 @@ export default {
         i18n: this.$i18n,
       });
       this.popup = popup;
-      // this.popup.set('translateTitle', false);
-      
       this.map.addOverlay(popup);
     },
+
+    /**
+     * 侧边栏数据上图逻辑
+     */
+    updateLayerVisibility({ id, visible, data }) {
+      if (!this.map) return;
+
+      const layers = this.map.getLayers().getArray();
+      const existing = layers.find(l => l.get('my_id') === id);
+      if (existing) this.map.removeLayer(existing);
+
+      if (visible) {
+        this.activeVectorLayers.add(id);
+
+        const dataMap = SPATIAL_DATA || {};
+        const geojsonData = dataMap[id];
+
+        if (!geojsonData) return;
+
+        const vectorSource = new VectorSource({
+          features: new GeoJSON().readFeatures(geojsonData, {
+            dataProjection: 'EPSG:4326',
+            featureProjection: 'EPSG:3857'
+          })
+        });
+
+        const vectorLayer = new VectorLayer({
+          source: vectorSource,
+          style: new Style({
+            stroke: new Stroke({ color: data.color || '#ff4d4f', width: 3 }),
+            image: new Circle({
+              radius: 7,
+              fill: new Fill({ color: data.color || '#ff4d4f' }),
+              stroke: new Stroke({ color: '#fff', width: 2 })
+            })
+          })
+        });
+
+        vectorLayer.set('my_id', id);
+        this.map.addLayer(vectorLayer);
+
+        const extent = vectorSource.getExtent();
+        if (extent && !vectorSource.isEmpty()) {
+          this.map.getView().fit(extent, {
+            padding: [200, 200, 200, 200],
+            duration: 800,
+            maxZoom: 12
+          });
+        }
+      } else {
+        this.activeVectorLayers.delete(id);
+        if (this.activeVectorLayers.size === 0) {
+          this.map.getView().animate({
+            center: fromLonLat(this.defaultViewConfig.center),
+            zoom: this.defaultViewConfig.zoom,
+            duration: 1000
+          });
+        }
+      }
+    },
+
 
     /**
      * 底图切换

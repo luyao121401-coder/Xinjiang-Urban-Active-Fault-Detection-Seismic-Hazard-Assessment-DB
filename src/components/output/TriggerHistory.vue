@@ -191,7 +191,8 @@ export default{
 }
 .el-date-editor /deep/.el-range-separator{
     padding: 5px 3px 3px 0;
-    font-size: 12px
+    font-size: 12px;
+    height: 42px
 }
 .trigger-history .left .main-search .el-date-editor /deep/.el-range-input{
     font-size: 16px;

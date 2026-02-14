@@ -1,6 +1,7 @@
 <template>
     <div class="pagination-content">
         <el-pagination
+            style="margin-left:0!important"
             v-model="current_page"
             layout="  prev, pager, next,slot, jumper"
             prev-text="上一页"
@@ -13,7 +14,7 @@
         >
         <div class="div">共{{ Math.ceil(total / pageSize) }}页</div>
         </el-pagination>
-        <el-pagination layout=" slot" :total="400">
+        <el-pagination style="margin-left:0!important" layout="slot" :total="400">
           <div class="ent-btn">确定</div>
         </el-pagination>
     </div>

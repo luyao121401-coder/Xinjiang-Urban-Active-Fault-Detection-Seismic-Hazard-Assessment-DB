@@ -26,7 +26,7 @@
                             </div>
                             <div class="info-item right">
                                 <span>地震类型</span>
-                                <el-select v-model="type" placeholder="请输入地震类型">
+                                <el-select v-model="type" placeholder="请选择地震类型">
                                     <el-option
                                         v-for="item in type_options"
                                         :key="item.value"
@@ -38,13 +38,15 @@
                             </div>
                         </div>
                         <div class="info-items">
-                            <div class="info-item">
+                            <div class="info-item" style="position: relative">
                                 <span>震中经度(°)</span>
-                                <el-input v-model="longitude" placeholder="请输入经度，如：0.00"></el-input>
+                                <img src="@/assets/img/经度.png" style="position: absolute;top: 60%;left: 12px;z-index: 99;"></img>
+                                <el-input class="zz" v-model="longitude" placeholder="请输入经度，如：0.00"></el-input>
                             </div>
-                            <div class="info-item right">
+                            <div class="info-item right" style="position: relative">
                                 <span>震中纬度(°)</span>
-                                <el-input v-model="latitude" placeholder="请输入纬度，如：0.00"></el-input>
+                                <img src="@/assets/img/纬度.png" style="position: absolute;top: 60%;left: 12px;z-index: 99;"></img>
+                                <el-input class="zz" v-model="latitude" placeholder="请输入纬度，如：0.00"></el-input>
                             </div>
                         </div>
                         <div class="info-items">
@@ -81,8 +83,23 @@
                             <div class="info-items" style="margin-left: 24px">
                                 <div class="location"  style="display: flex;flex-direction: column">
                                     <span style="margin-bottom: 10px">参考位置</span>
-                                    <el-input v-model="location" style="width: 420px" placeholder="请输入地震名称"></el-input>
+                                    <el-input v-model="location" style="width: 420px" placeholder="请输入参考位置"></el-input>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="compute-model">
+                            <span style="margin-top:38px;font-size: 18px;font-weight: 500">计算模型</span>
+                            <div style="display: flex;flex-direction: column">
+                                <span style="margin: 15px 0 10px">地震烈度关系模型</span>
+                                <el-select v-model="model" placeholder="选择地震烈衰减关系模型">
+                                    <el-option
+                                        v-for="item in model_options"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value"
+                                    >
+                                    </el-option>
+                                </el-select>
                             </div>
                         </div>
                     </div>
@@ -90,7 +107,8 @@
                         <div class="results-top">
                             <span class="mini-title">应急产出内容</span>
                             <div class="right">
-                                <i class="el-icon-edit"></i>
+                                <!-- <i class="el-icon-edit"></i> -->
+                                <img style="height: 18px;margin-right: 6px" src="@/assets/icon/编辑@2x.png"></img>
                                 <span>编辑产出内容</span>
                             </div>
                         </div>
@@ -483,8 +501,16 @@ export default{
     border-radius: 6px;
     border: 2px solid #CCCCCC;
 }
+.output .main-body .info .compute-model{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.output .main-body .info .compute-model /deep/.el-input__inner{
+    width: 100%;
+}
 .output .main-body .info .info-item /deep/.el-input__inner{
-    width: 420px;
+    /* width: 420px; */
 }
 .el-date-editor /deep/.el-range-input{
     width: 860px;
@@ -498,7 +524,10 @@ export default{
 .el-date-editor .el-range__icon{
     margin-left: 0px
 }
-output .main-body .info .location /deep/.el-input__inner{
+.zz /deep/.el-input__inner::placeholder {
+    padding-left: 20px;
+}
+.output .main-body .info .location /deep/.el-input__inner{
     width: 860px;
 }
 .output .main-body .info .info-item span, .location,.time{
@@ -591,6 +620,9 @@ output .main-body .info .location /deep/.el-input__inner{
     line-height: 20px;
     text-align: left;
     font-style: normal;
+    display: flex;
+    align-items: center;
+    cursor: pointer
 }
 .output .results-bottom{
     display: flex;

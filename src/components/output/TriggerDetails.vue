@@ -3,7 +3,7 @@
         <div class="headerr">
             <span>触发产出详情</span>
             <div class="right">
-                <i class="el-icon-delete-solid"></i>
+                <i class="el-icon-delete-solid" style="margin-right: 10px"></i>
                 <span>删除触发记录</span>
             </div>
         </div>
@@ -198,6 +198,15 @@
                     </div>
                 </div>
             </div>
+            <div class="output-report">
+                <span class="title">产出报告/表单:</span>
+                <div class="report">
+                    <span>辅助决策报告.docx</span>
+                    <span>辅助决策报告.pptx</span>
+                    <span>震中50公里内乡镇距离表及各乡镇人口数统计.word</span>
+                </div>
+            </div>
+            
         </div>
     </div>
 </template>
@@ -225,6 +234,7 @@
     line-height: 20px;
     text-align: left;
     font-style: normal;
+    cursor: pointer
 }
 .trigger-details .main-top{
     display: flex;
@@ -284,7 +294,7 @@
     width: 140px;
     height: 28px;
 }
-.trigger-details .main-bottom .bottom-down .title{
+.trigger-details .main-bottom .title{
     font-family: PingFangSC, PingFang SC;
     font-weight: 600;
     font-size: 18px;
@@ -344,5 +354,22 @@
     line-height: 25px;
     text-align: left;
     font-style: normal;
+}
+.output-report .report{
+    display: flex;
+    flex-direction: column;
+}
+.output-report span{
+
+}
+.output-report .report span{
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 400;
+    font-size: 18px;
+    color: #014FD9;
+    line-height: 25px;
+    text-align: left;
+    font-style: normal;
+    margin-top: 16px
 }
 </style>

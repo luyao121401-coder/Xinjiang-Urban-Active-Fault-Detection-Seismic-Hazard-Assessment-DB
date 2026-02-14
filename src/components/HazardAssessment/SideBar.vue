@@ -1,236 +1,208 @@
 <template>
-    <div class="side-bar">
-        <div class="bar-top">
-            <span>图层目录</span>
-            <el-select v-model="value" placeholder="请选择">
-                <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
-                </el-option>
-            </el-select>
-        </div>
-        <div class="bar-body">
-            <div>
-                <!-- <el-tree
-                :props="props"
-                :load="loadNode"
-                lazy
-                :render-content="renderContent"
-                @check-change="handleCheckChange"
-                ref="tree">
-                </el-tree> -->
-                <el-tree
-                :props="props"
-                :load="loadNode"
-                show-checkbox
-                lazy
-                @check-change="handleCheckChange"
-                ref="tree">
-                </el-tree>
-            </div>
-        </div>
+  <div class="side-bar">
+    <div class="bar-top">
+      <span class="title">图层目录</span>
+      <el-select v-model="viewType" placeholder="请选择" @change="handleViewChange" size="small">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
     </div>
+    <div class="bar-body">
+      <!--
+        1. 绑定 :data。
+        2. node-key 必须设置。
+      -->
+      <el-tree
+        :data="treeData"
+        :props="defaultProps"
+        show-checkbox
+        node-key="id"
+        :default-expanded-keys="['p1']"
+        @check="handleCheck"
+        ref="tree">
+        <!-- 自定义内容：渲染图层颜色小圆点 -->
+        <span class="custom-tree-node" slot-scope="{ node, data }">
+          <i v-if="data.type === 'layer'" class="dot" :style="{ backgroundColor: data.color }"></i>
+          <span>{{ node.label }}</span>
+        </span>
+      </el-tree>
+    </div>
+  </div>
 </template>
+
 <script>
-export default{
-    data(){
-        return{
-            node: '',
-            props:{
-                label: 'name',
-                children: 'zones'
-            },
-            checkedIconUrl: require('@/assets/icon/full-selected.png'), // 替换成你的已准备好的图片路径
-            halfcheckedIconUrl: require('@/assets/icon/part-selected.png'), // 替换成你的已准备好的图片路径
-            uncheckedIconUrl: require('@/assets/icon/unselected.png'), // 替换成你的已准备好的图片路径
-            count: 1,
-            value: '选项1',
-            options: [{
-                value: '选项1',
-                label: '按项目'
-            }, {
-                value: '选项2',
-                label: '按专题'
-            }],
-        }
-        
-    },
-    computed:{
-        nodeCheckedStatus() {
-            return (node) =>{
-                if(node && node.checked != undefined){
-                    if(node.checked){
-                        if(node.indeterminate){
-                            return this.halfcheckedIconUrl
-                        }else{
-                            return this.checkedIconUrl
-                        }
-                    }else{
-                        return this.uncheckedIconUrl
-                    }
-                }
-            }
-        }
-    },
-    methods:{
-        renderContent(data, node){
-            console.log("node")
-            console.log(node)
-            // console.log(this.nodeCheckedStatus(node))
-            const h = this.$createElement
-            if (!node || !node.data ) return null; // 针对node为undefined的情况进行处理
-            return h('span', { class: 'tree-node-content'},[
-                h('span', { class: 'custom-checkbox'},[
-                    h('img', {
-                        attrs:{
-                            src: this.nodeCheckedStatus(node.node),
-                        }
-                    })
-                ]),
-                h('span', node.data.name)
-            ])
-        },
-        handleCheckChange(data, checked, indeterminate){
-            console.log(data, checked, indeterminate)
-        },
-        handleNodeClick(data){
-            console.log(data)
-        },
-        loadNode(node, resolve){
-            this.node = node
-            console.log(node)
-            if (node.level === 0){
-                return resolve([ 
-                    { name: '喀什市城市活动断层探测项目' }, 
-                    { name: '阿图什市城市活动断层探测项目' },
-                    { name: '库车市城市活动断层探测项目' },
-                    { name: '伽师县城市活动断层探测项目' },
-                    { name: '乌恰县城市活动断层探测项目' },
-                    { name: '新源县城市活动断层探测项目' },
-                    { name: '特克斯县城市活动断层探测项目' },
-                ])
-            }
-            if (node.level > 3) return resolve([])
+import { PROJECTS_TREE } from '@/public/data/sidebardata.js';
 
-            var hasChild
-            if (node.data.name === '喀什市城市活动断层探测项目'){
-                hasChild = false
-            }else if (node.data.name === '阿图什市城市活动断层探测项目'){
-                hasChild = false
-            }else if (node.data.name === '库车市城市活动断层探测项目'){
-                hasChild = false
-            }else if (node.data.name === '伽师县城市活动断层探测项目'){
-                hasChild = false
-            }else if (node.data.name === '乌恰县城市活动断层探测项目'){
-                hasChild = true
-            }else if (node.data.name === '新源县城市活动断层探测项目'){
-                hasChild = false
-            }else if (node.data.name === '特克斯县城市活动断层探测项目'){
-                hasChild = false
-            }else{
-                hasChild = Math.random > 0.5
-            }
+export default {
+  data() {
+    return {
+      viewType: '选项1', // 默认按项目展示
+      options: [
+        { value: '选项1', label: '按项目' },
+        { value: '选项2', label: '按专题' }
+      ],
+      defaultProps: {
+        children: 'children',
+        label: 'label'
+      },
+      treeData: [],
+      rawProjectData: PROJECTS_TREE
+    };
+  },
+  mounted() {
+    this.initData();
+  },
+  methods: {
+    initData() {
+      this.treeData = JSON.parse(JSON.stringify(this.rawProjectData));
+    },
+    handleViewChange(val) {
+      if (val === '选项1') {
+        this.treeData = JSON.parse(JSON.stringify(this.rawProjectData));
+      } else {
+        this.treeData = this.rebuildByThematic();
+      }
+    },
+    rebuildByThematic() {
+      const thematicMap = {
+        '遥感': [],
+        '地震地质调查': [],
+        '钻探': [],
+        '微地貌': []
+      };
 
-            setTimeout(() =>{
-                var data
-                if (hasChild) {
-                    data = [{
-                        name: '遥感'
-                    },{
-                        name: '微地貌'
-                    }]
-                }else{
-                    data = []
-                }
-                
-                resolve(data)
-            }, 500)
-        }
+      this.rawProjectData.forEach(project => {
+        project.children.forEach(layer => {
+          if (thematicMap[layer.label]) {
+            thematicMap[layer.label].push({
+              ...layer,
+              label: `${project.label.substring(0,3)}... - ${layer.label}`
+            });
+          }
+        });
+      });
+
+      return Object.keys(thematicMap).map(key => ({
+        id: `group_${key}`,
+        label: key,
+        children: thematicMap[key]
+      }));
+    },
+
+    //侧边栏数据上图
+    handleCheck(currentData, checkedStatus) {
+          // 1. 获取当前节点的操作状态
+          const isChecked = checkedStatus.checkedKeys.includes(currentData.id);
+
+          // 2. 情况 A：点击的是具体的“图层”
+          if (currentData.type === 'layer') {
+            this.$emit('layer-toggle', {
+              id: currentData.id,
+              visible: isChecked,
+              data: currentData
+            });
+          }
+          // 3. 情况 B：点击的是“项目”父节点（实现全选/取消全选）
+          else if (currentData.type === 'project' && currentData.children) {
+            currentData.children.forEach(layer => {
+              this.$emit('layer-toggle', {
+                id: layer.id,
+                visible: isChecked,
+                data: layer
+              });
+            });
+          }
+
+          // 更新选中的 ID 列表（可选）
+          const { checkedNodes } = checkedStatus;
+          const selectedLayerIds = checkedNodes.filter(n => n.type === 'layer').map(l => l.id);
+          this.$emit('update-layers', selectedLayerIds);
     }
-}
+
+
+  }
+};
 </script>
+
 <style scoped>
-.side-bar{
-    height: calc(100% - 68px);
-    background: #FFF;
-    padding: 14px 16px 11px;
-    width: 308px
+.side-bar {
+  height: calc(100% - 68px);
+  background: #FFF;
+  padding: 14px 16px 11px;
+  width: 308px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+  overflow-y: auto;
+  box-sizing: border-box;
 }
-.side-bar .bar-top{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px
+
+/* 调整后的顶部栏布局 */
+.side-bar .bar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #EEEEEE;
+  padding-bottom: 12px;
 }
-.side-bar .bar-top span{
-    font-family: SourceHanSansCN, SourceHanSansCN;
-    font-weight: 600;
-    font-size: 18px;
-    color: #000000;
-    line-height: 27px;
-    text-align: left;
-    font-style: normal;
+
+.side-bar .bar-top .title {
+  font-family: SourceHanSansCN, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000000;
+  white-space: nowrap; /* 防止标题换行 */
 }
-.side-bar .bar-top .el-select{
-    width: 120px;
-    height: 32px;
-    background: #F9F9F9;
-    border-radius: 6px;
-    /* border: 2px solid #CCCCCC; */
+
+/* 下拉框样式定制，匹配截图 image_2fd0c6.png */
+.side-bar .bar-top /deep/ .el-input__inner {
+  width: 110px;
+  height: 32px;
+  line-height: 32px;
+  background: #F9F9F9;
+  border-radius: 6px;
+  border: 1px solid #CCCCCC;
+  font-size: 14px;
+  color: #333333;
+  padding: 0 10px;
 }
-.side-bar .bar-top .el-select /deep/.el-input__inner{
-    width: 120px;
-    height: 32px;
-    background: #F9F9F9;
-    border-radius: 6px;
-    border: 2px solid #CCCCCC;
-    font-family: SourceHanSansCN, SourceHanSansCN;
-    font-weight: 400;
-    font-size: 14px;
-    color: #000000;
-    line-height: 21px;
-    text-align: left;
-    font-style: normal;
+
+.side-bar .bar-top /deep/ .el-input__icon {
+  line-height: 32px;
 }
-.side-bar /deep/.el-tree-node__label{
-    font-family: SourceHanSansCN, SourceHanSansCN;
-    font-weight: 500;
-    font-size: 16px;
-    color: #181818;
-    line-height: 24px;
-    text-align: left;
-    font-style: normal;
+
+.bar-body {
+  margin-top: 8px;
 }
-.side-bar /deep/.el-tree-node__content{
-    height: 40px;
-    display:flex;
-    width: 100%;
-    align-items: center
+
+.custom-tree-node {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
 }
-.side-bar /deep/.el-tree-node__expand-icon {
-    color: #000000;
-    opacity: 0.5;
-    padding: 5px 8px;
-    margin-right: 7px;
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 10px;
+  display: inline-block;
+  flex-shrink: 0;
 }
-.side-bar /deep/.el-checkbox__input.is-checked .el-checkbox__inner, /deep/.el-checkbox__input.is-indeterminate .el-checkbox__inner {
-    background: #777777;
-    border: 2px solid #777777;
+
+/* 树节点样式微调 */
+/deep/ .el-tree-node__content {
+  height: 38px;
 }
-.side-bar[data-v-7a4ef831] /deep/.el-checkbox__input.is-checked .el-checkbox__inner, [data-v-7a4ef831] .el-checkbox__input.is-indeterminate .el-checkbox__inner {
-    background: #181818;
-    border: 2px solid #181818;
+/deep/ .el-tree-node__label {
+  color: #181818;
+  font-weight: 500;
 }
-.side-bar /deep/.el-checkbox__inner::after {
-    /* height: 5px; */
-    left: 3px;
-    top: 0
-}
-.custom-checkbox img {
-  width: 16px; /* 设置图片宽度 */
-  height: 16px; /* 设置图片高度 */
-  vertical-align: middle; /* 垂直居中 */
+/deep/ .el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: #181818;
+  border-color: #181818;
 }
 </style>

@@ -6,7 +6,7 @@
         <DataServe v-if="page6 == 1"></DataServe>
         <ThematicBrowse v-if="page5 == 1"></ThematicBrowse>
         <div v-if="page4 == 1" style="display: flex;justify-content: space-between">
-            <side-bar class="side-bar"></side-bar>
+            <side-bar class="side-bar" @layer-toggle="handleLayerToggle" />
             <div>
                 <mapview class="mapview" ref="mapview">
                     <div class='map-tool'>
@@ -144,6 +144,14 @@ export default{
             changepage5: "page/changepage5",
             changepage6: "page/changepage6"
         }),
+
+        //侧边栏监听事件
+        handleLayerToggle(payload) {
+          if (this.$refs.mapview) {
+              this.$refs.mapview.updateLayerVisibility(payload);
+          }
+        },
+
         //控制切换底图div
         showSwitchPop() {
           if (this.isPopOpen == false){

@@ -58,7 +58,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- <div class="items">
                 <span>探槽</span>
                 <div class="item" v-for="(item, index) in items" :key="index">
@@ -469,7 +468,7 @@ export default{
     margin: 18px 18px 0
 }
 .left{
-    /* height: 100%; */
+    height: 100%;
     width: 233px;
     padding: 16px;
     height: 500px;
@@ -780,7 +779,8 @@ export default{
     width: calc(100% - 269px);
     display: flex;
     align-items: center;
-    bottom: 0
+    bottom: 0;
+    background: #F9F9F9
     /* height: 86px */
 }
 </style>
